@@ -53,5 +53,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+		<key>UIAppFonts</key>
+	<array>
+		<string>Recursive-Regular.ttf</string>
+		<string>Recursive-Bold.ttf</string>
+	</array>
 </dict>
 </plist>

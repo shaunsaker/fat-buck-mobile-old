@@ -12,6 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		289565D724DEC1F200C3C9C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 289565D624DEC1F200C3C9C5 /* GoogleService-Info.plist */; };
+		28E8382A24DED786009A519F /* Recursive-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28E8382824DED786009A519F /* Recursive-Bold.ttf */; };
+		28E8382B24DED786009A519F /* Recursive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28E8382924DED786009A519F /* Recursive-Regular.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -52,6 +54,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FatBuck/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FatBuck/main.m; sourceTree = "<group>"; };
 		289565D624DEC1F200C3C9C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		28E8382824DED786009A519F /* Recursive-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Recursive-Bold.ttf"; sourceTree = "<group>"; };
+		28E8382924DED786009A519F /* Recursive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Recursive-Regular.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* FatBuck-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FatBuck-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* FatBuck-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FatBuck-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3864D8C030AD12D527FBF3D7 /* Pods-FatBuck-FatBuckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FatBuck-FatBuckTests.release.xcconfig"; path = "Target Support Files/Pods-FatBuck-FatBuckTests/Pods-FatBuck-FatBuckTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				289565D624DEC1F200C3C9C5 /* GoogleService-Info.plist */,
+				28E8382824DED786009A519F /* Recursive-Bold.ttf */,
+				28E8382924DED786009A519F /* Recursive-Regular.ttf */,
 			);
 			name = FatBuck;
 			sourceTree = "<group>";
@@ -325,8 +331,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28E8382A24DED786009A519F /* Recursive-Bold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				28E8382B24DED786009A519F /* Recursive-Regular.ttf in Resources */,
 				289565D724DEC1F200C3C9C5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
