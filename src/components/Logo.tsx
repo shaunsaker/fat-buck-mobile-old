@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { colors } from '../../styleConstants/colors';
+import { colors } from '../colors';
 
 const SIZE = 50;
 const LogoContainer = styled.View`
@@ -10,7 +10,7 @@ const LogoContainer = styled.View`
   background-color: ${colors.grey};
 `;
 
-const Logo = () => {
+export const Logo = () => {
   return <LogoContainer />;
 };
 

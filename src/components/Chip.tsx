@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { colors } from '../../styleConstants/colors';
+import { colors } from '../colors';
 
 export enum ChipKinds {
   primary,
@@ -13,8 +13,8 @@ interface ChipContainerProps {
 }
 
 const ChipContainer = styled.View<ChipContainerProps>`
-  width: 80px;
-  padding: 5px 20px;
+  width: 86px;
+  height: 33px;
   justify-content: center;
   align-items: center;
   background-color: ${colors.lightGreen};
@@ -40,7 +40,7 @@ interface ChipProps {
   children: string;
 }
 
-const Chip = ({ kind, children }: ChipProps) => {
+export const Chip = ({ kind, children }: ChipProps) => {
   return (
     <ChipContainer kind={kind}>
       <ChipText>{children}</ChipText>
