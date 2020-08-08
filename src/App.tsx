@@ -5,6 +5,7 @@ import Chip, { ChipKinds } from './components/Chip';
 import { Background } from './components/Background';
 import Button from './components/Button';
 import { Label } from './components/Label';
+import { SymbolButton } from './components/SymbolButton';
 
 declare const global: { HermesInternal: null | {} };
 
@@ -23,6 +24,13 @@ const App = () => {
         <Button onPress={() => {}}>Exchange: US</Button>
 
         <Label>Expected % Return</Label>
+
+        <SymbolButton
+          name="AAPL"
+          ChipProps={{ kind: ChipKinds.primary, children: 'BUY' }}
+          expectedReturn={27}
+          onPress={() => {}}
+        />
       </SafeAreaView>
     </Background>
   );

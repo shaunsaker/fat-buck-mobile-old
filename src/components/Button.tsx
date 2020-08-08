@@ -35,7 +35,7 @@ export const Button = ({ onPress, children }: ButtonProps) => {
     <ButtonContainer onPress={onPress}>
       <ButtonGradient
         start={{ x: 0, y: 0.25 }}
-        end={{ x: 1.2, y: 1.5 }}
+        end={{ x: 1.5, y: 1.5 }}
         colors={[colors.green, colors.blue, colors.black]}>
         <ButtonText>{children}</ButtonText>
       </ButtonGradient>

@@ -35,7 +35,7 @@ const ChipText = styled.Text`
   color: ${colors.white};
 `;
 
-interface ChipProps {
+export interface ChipProps {
   kind: ChipKinds;
   children: string;
 }
