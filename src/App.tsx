@@ -4,6 +4,7 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import Chip, { ChipKinds } from './components/Chip';
 import { Background } from './components/Background';
 import Button from './components/Button';
+import { Label } from './components/Label';
 
 declare const global: { HermesInternal: null | {} };
 
@@ -20,6 +21,8 @@ const App = () => {
         <Chip kind={ChipKinds.tertiary}>SELL</Chip>
 
         <Button onPress={() => {}}>Exchange: US</Button>
+
+        <Label>Expected % Return</Label>
       </SafeAreaView>
     </Background>
   );
