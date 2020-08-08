@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "958086698452",
+    "firebase_url": "https://fat-buck.firebaseio.com",
+    "project_id": "fat-buck",
+    "storage_bucket": "fat-buck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958086698452:android:5ec0ce6fd53e8f1e953241",
+        "android_client_info": {
+          "package_name": "co.za.shaunsaker.fatbuck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958086698452-86t077cvs2hmi0q6pd3oh46nao2q1i1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbCb9jpUAsLMLcefznMd9kuEUTlzuPAb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958086698452-86t077cvs2hmi0q6pd3oh46nao2q1i1u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "958086698452-ran7773di8po6eqvpth7c9ukap5270b3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.za.shaunsaker.fatbuck"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

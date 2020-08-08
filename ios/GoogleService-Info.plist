@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>958086698452-ran7773di8po6eqvpth7c9ukap5270b3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.958086698452-ran7773di8po6eqvpth7c9ukap5270b3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC5DXdoXSSPVGvVhGQKwB4y0f20s3AIz7M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>958086698452</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.za.shaunsaker.fatbuck</string>
+	<key>PROJECT_ID</key>
+	<string>fat-buck</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fat-buck.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:958086698452:ios:2380342da9fbcd97953241</string>
+	<key>DATABASE_URL</key>
+	<string>https://fat-buck.firebaseio.com</string>
+</dict>
+</plist>
