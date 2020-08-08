@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.temp"
+        applicationId "co.za.shaunsaker.fatbuck"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
