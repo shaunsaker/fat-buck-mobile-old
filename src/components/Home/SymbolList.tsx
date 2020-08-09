@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
 import { Label, LabelKinds } from '../Label';
 import { SymbolButton, SymbolButtonProps } from '../SymbolButton';
+import { FlatList } from 'react-native';
 
 const SymbolListContainer = styled.View`
   padding: 20px;
@@ -12,8 +13,6 @@ const SymbolListLabelsContainer = styled.View`
   justify-content: space-between;
   margin: 0 20px;
 `;
-
-const SymbolListItemsContainer = styled.ScrollView``;
 
 const SymbolListItemContainer = styled.View`
   margin-top: 20px;
@@ -26,6 +25,15 @@ interface SymbolListProps {
 }
 
 const SymbolListBase = ({ symbols, handleSymbolPress }: SymbolListProps) => {
+  const renderItem = useCallback(
+    ({ item }) => (
+      <SymbolListItemContainer>
+        <SymbolButton {...item} onPress={() => handleSymbolPress(item)} />
+      </SymbolListItemContainer>
+    ),
+    [handleSymbolPress],
+  );
+
   return (
     <SymbolListContainer>
       <SymbolListLabelsContainer>
@@ -34,17 +42,11 @@ const SymbolListBase = ({ symbols, handleSymbolPress }: SymbolListProps) => {
         <Label kind={LabelKinds.secondary}>Expected Return %</Label>
       </SymbolListLabelsContainer>
 
-      <SymbolListItemsContainer>
-        {symbols &&
-          symbols.map((symbol) => (
-            <SymbolListItemContainer>
-              <SymbolButton
-                {...symbol}
-                onPress={() => handleSymbolPress(symbol)}
-              />
-            </SymbolListItemContainer>
-          ))}
-      </SymbolListItemsContainer>
+      <FlatList
+        contentContainerStyle={{ padding: 20 }}
+        data={symbols}
+        renderItem={renderItem}
+      />
     </SymbolListContainer>
   );
 };
