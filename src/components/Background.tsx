@@ -15,7 +15,7 @@ export const Background = ({ children }: BackgroundProps) => {
   return (
     <BackgroundContainer
       start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
+      end={{ x: 0, y: 1.5 }}
       colors={[colors.black, colors.green]}>
       {children}
     </BackgroundContainer>
