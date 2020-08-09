@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
 import MenuIcon from '../icons/menu.svg';
 import Logo from './Logo';
@@ -21,7 +21,7 @@ interface HeaderBarProps {
   handleMenuPress: () => void;
 }
 
-export const HeaderBar = ({ handleMenuPress }: HeaderBarProps) => {
+const HeaderBarBase = ({ handleMenuPress }: HeaderBarProps) => {
   return (
     <HeaderBarContainer>
       <HeaderBarMenuIconContainer onPress={handleMenuPress}>
@@ -33,4 +33,10 @@ export const HeaderBar = ({ handleMenuPress }: HeaderBarProps) => {
       </HeaderBarLogoContainer>
     </HeaderBarContainer>
   );
+};
+
+export const HeaderBar = () => {
+  const onMenuPress = useCallback(() => {}, []);
+
+  return <HeaderBarBase handleMenuPress={onMenuPress} />;
 };

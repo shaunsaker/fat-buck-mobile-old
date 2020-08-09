@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import Chip, { ChipProps as ChipPropsType } from './Chip';
+import Chip, { ChipProps as ChipPropsType, ChipKinds } from './Chip';
 import { colors } from '../colors';
 import { Touchable } from './Touchable';
+import { Instructions } from '../models';
 
 const BORDER_RADIUS = 30;
 const SymbolButtonContainer = styled(Touchable)`
@@ -34,16 +35,16 @@ const SymbolButtonReturnContainer = styled.View`
   align-items: flex-end;
 `;
 
-interface SymbolButtonProps {
+export interface SymbolButtonProps {
   name: string;
-  ChipProps: ChipPropsType;
+  instruction: Instructions;
   expectedReturn: number;
   onPress: () => void;
 }
 
 export const SymbolButton = ({
   name,
-  ChipProps,
+  instruction,
   expectedReturn,
   onPress,
 }: SymbolButtonProps) => {
@@ -54,7 +55,16 @@ export const SymbolButton = ({
       </SymbolButtonNameContainer>
 
       <SymbolButtonChipContainer>
-        <Chip {...ChipProps} />
+        <Chip
+          kind={
+            instruction === Instructions.buy
+              ? ChipKinds.primary
+              : instruction === Instructions.hold
+              ? ChipKinds.secondary
+              : ChipKinds.tertiary
+          }>
+          {instruction}
+        </Chip>
       </SymbolButtonChipContainer>
 
       <SymbolButtonReturnContainer>
