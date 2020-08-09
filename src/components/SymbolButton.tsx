@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import Chip, { ChipProps as ChipPropsType, ChipKinds } from './Chip';
+import Chip, { ChipKinds } from './Chip';
 import { colors } from '../colors';
 import { Touchable } from './Touchable';
 import { Instructions } from '../models';
@@ -15,7 +15,7 @@ const SymbolButtonContainer = styled(Touchable)`
   border-radius: ${BORDER_RADIUS}px;
   height: ${BORDER_RADIUS * 2}px;
   padding: 0 ${BORDER_RADIUS}px;
-  background-color: rgba(252, 252, 253, 0.17);
+  background-color: ${colors.transWhite};
 `;
 
 const SymbolButtonNameContainer = styled.View`

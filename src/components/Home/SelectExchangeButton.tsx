@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import Button from '../Button';
+import Button, { ButtonKinds } from '../Button';
 
 export const SelectExchangeButton = () => {
   const selectedExchange = 'US';
@@ -8,6 +8,7 @@ export const SelectExchangeButton = () => {
 
   return (
     <Button
+      kind={ButtonKinds.primary}
       onPress={onSelectExchange}>{`Exchange: ${selectedExchange}`}</Button>
   );
 };

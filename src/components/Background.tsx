@@ -8,7 +8,7 @@ const BackgroundContainer = styled(LinearGradient)`
 `;
 
 interface BackgroundProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const Background = ({ children }: BackgroundProps) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Logo from './Logo';
-import Button from './Button';
+import Button, { ButtonKinds } from './Button';
 import { Label, LabelKinds } from './Label';
 import { colors } from '../colors';
 import CloseIcon from '../icons/close.svg';
@@ -63,7 +63,9 @@ export const SideMenu = ({
 
       <SideMenuContentContainer>
         <SideMenuButtonContainer>
-          <Button onPress={handleGetInTouch}>Get in touch</Button>
+          <Button kind={ButtonKinds.primary} onPress={handleGetInTouch}>
+            Get in touch
+          </Button>
         </SideMenuButtonContainer>
 
         <SideMenuVersionContainer>

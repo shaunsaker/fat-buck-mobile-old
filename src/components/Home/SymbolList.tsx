@@ -3,19 +3,20 @@ import styled from 'styled-components/native';
 import { Label, LabelKinds } from '../Label';
 import { SymbolButton, SymbolButtonProps } from '../SymbolButton';
 import { FlatList } from 'react-native';
+import { Instructions } from '../../models';
 
 const SymbolListContainer = styled.View`
-  padding: 20px;
+  flex: 1;
 `;
 
 const SymbolListLabelsContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 20px;
+  margin: 20px 50px 0;
 `;
 
 const SymbolListItemContainer = styled.View`
-  margin-top: 20px;
+  margin: 20px 20px 0;
 `;
 
 type Symbol = Omit<SymbolButtonProps, 'onPress'>;
@@ -43,8 +44,8 @@ const SymbolListBase = ({ symbols, handleSymbolPress }: SymbolListProps) => {
       </SymbolListLabelsContainer>
 
       <FlatList
-        contentContainerStyle={{ padding: 20 }}
         data={symbols}
+        keyExtractor={(item) => item.name}
         renderItem={renderItem}
       />
     </SymbolListContainer>
@@ -52,7 +53,23 @@ const SymbolListBase = ({ symbols, handleSymbolPress }: SymbolListProps) => {
 };
 
 export const SymbolList = () => {
-  const symbols = [];
+  const symbols: Symbol[] = [
+    {
+      name: 'AAPL',
+      instruction: Instructions.buy,
+      expectedReturn: 27,
+    },
+    {
+      name: 'TSL',
+      instruction: Instructions.hold,
+      expectedReturn: 3,
+    },
+    {
+      name: 'IBM',
+      instruction: Instructions.sell,
+      expectedReturn: -12,
+    },
+  ];
 
   const onSymbolPress = useCallback(() => {}, []);
 

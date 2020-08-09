@@ -4,12 +4,22 @@ import { colors } from '../colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { Touchable } from './Touchable';
 
-const ButtonContainer = styled(Touchable)`
+export enum ButtonKinds {
+  primary,
+  secondary,
+}
+
+interface ButtonContainerProps {
+  kind: ButtonKinds;
+}
+
+const ButtonContainer = styled(Touchable)<ButtonContainerProps>`
   width: 152px;
   height: 40px;
   border-width: 3px;
   border-style: solid;
-  border-color: ${colors.green};
+  border-color: ${({ kind }) =>
+    kind === ButtonKinds.primary ? colors.green : colors.transWhite};
   border-radius: 20px;
 `;
 
@@ -27,17 +37,22 @@ const ButtonText = styled.Text`
 `;
 
 interface ButtonProps {
+  kind: ButtonKinds;
   children: string;
   onPress: () => void;
 }
 
-export const Button = ({ onPress, children }: ButtonProps) => {
+export const Button = ({ kind, onPress, children }: ButtonProps) => {
   return (
-    <ButtonContainer onPress={onPress}>
+    <ButtonContainer kind={kind} onPress={onPress}>
       <ButtonGradient
         start={{ x: 0, y: 0.25 }}
         end={{ x: 1.5, y: 1.5 }}
-        colors={[colors.green, colors.blue, colors.black]}>
+        colors={[
+          kind === ButtonKinds.primary ? colors.green : colors.lightGreen,
+          colors.blue,
+          colors.black,
+        ]}>
         <ButtonText>{children}</ButtonText>
       </ButtonGradient>
     </ButtonContainer>
