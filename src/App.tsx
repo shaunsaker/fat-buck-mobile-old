@@ -1,11 +1,12 @@
 import React from 'react';
 import { Logo } from './components/Logo';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, View } from 'react-native';
 import Chip, { ChipKinds } from './components/Chip';
 import { Background } from './components/Background';
 import Button from './components/Button';
-import { Label } from './components/Label';
+import { Label, LabelKinds } from './components/Label';
 import { SymbolButton } from './components/SymbolButton';
+import { SideMenu } from './components/SideMenu';
 
 declare const global: { HermesInternal: null | {} };
 
@@ -23,7 +24,8 @@ const App = () => {
 
         <Button onPress={() => {}}>Exchange: US</Button>
 
-        <Label>Expected % Return</Label>
+        <Label kind={LabelKinds.primary}>Expected % Return</Label>
+        <Label kind={LabelKinds.secondary}>Expected % Return</Label>
 
         <SymbolButton
           name="AAPL"
@@ -31,6 +33,14 @@ const App = () => {
           expectedReturn={27}
           onPress={() => {}}
         />
+
+        <View style={{ width: 320, flex: 1 }}>
+          <SideMenu
+            version="v1.0.0 (2)"
+            handleClose={() => {}}
+            handleGetInTouch={() => {}}
+          />
+        </View>
       </SafeAreaView>
     </Background>
   );
