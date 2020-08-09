@@ -23,7 +23,7 @@ const SideMenuHeaderContainer = styled.View`
 
 const SideMenuLogoContainer = styled.View``;
 
-const SideMenuCloseContainer = styled(TouchableIcon)``;
+const SideMenuCloseIconContainer = styled(TouchableIcon)``;
 
 const SideMenuContentContainer = styled.View`
   flex: 1;
@@ -56,9 +56,9 @@ export const SideMenu = ({
           <Logo />
         </SideMenuLogoContainer>
 
-        <SideMenuCloseContainer onPress={handleClose}>
+        <SideMenuCloseIconContainer onPress={handleClose}>
           <CloseIcon width={24} height={24} fill={colors.white} />
-        </SideMenuCloseContainer>
+        </SideMenuCloseIconContainer>
       </SideMenuHeaderContainer>
 
       <SideMenuContentContainer>

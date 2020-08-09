@@ -1,8 +1,7 @@
 import React from 'react';
-import { Touchable } from './Touchable';
-import { TouchableOpacityProperties } from 'react-native';
+import { Touchable, TouchableProps } from './Touchable';
 
-export const TouchableIcon = (props: TouchableOpacityProperties) => {
+export const TouchableIcon = (props: TouchableProps) => {
   return (
     <Touchable
       {...props}
