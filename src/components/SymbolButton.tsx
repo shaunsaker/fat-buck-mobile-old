@@ -4,8 +4,14 @@ import Chip, { ChipKinds } from './Chip';
 import { colors } from '../colors';
 import { Touchable } from './Touchable';
 import { Instructions } from '../models';
+import LinearGradient from 'react-native-linear-gradient';
 
 const BORDER_RADIUS = 30;
+
+const SymbolButtonGradient = styled(LinearGradient)`
+  border-radius: ${BORDER_RADIUS}px;
+`;
+
 const SymbolButtonContainer = styled(Touchable)`
   flex-direction: row;
   align-items: center;
@@ -15,7 +21,6 @@ const SymbolButtonContainer = styled(Touchable)`
   border-radius: ${BORDER_RADIUS}px;
   height: ${BORDER_RADIUS * 2}px;
   padding: 0 ${BORDER_RADIUS}px;
-  background-color: ${colors.transWhite};
 `;
 
 const SymbolButtonNameContainer = styled.View`
@@ -49,27 +54,32 @@ export const SymbolButton = ({
   onPress,
 }: SymbolButtonProps) => {
   return (
-    <SymbolButtonContainer onPress={onPress}>
-      <SymbolButtonNameContainer>
-        <SymbolButtonText>{name}</SymbolButtonText>
-      </SymbolButtonNameContainer>
+    <SymbolButtonGradient
+      start={{ x: 0, y: 0.25 }}
+      end={{ x: 1.5, y: 1.5 }}
+      colors={[colors.transWhite, colors.lightGreen, colors.black]}>
+      <SymbolButtonContainer onPress={onPress}>
+        <SymbolButtonNameContainer>
+          <SymbolButtonText>{name}</SymbolButtonText>
+        </SymbolButtonNameContainer>
 
-      <SymbolButtonChipContainer>
-        <Chip
-          kind={
-            instruction === Instructions.buy
-              ? ChipKinds.primary
-              : instruction === Instructions.hold
-              ? ChipKinds.secondary
-              : ChipKinds.tertiary
-          }>
-          {instruction}
-        </Chip>
-      </SymbolButtonChipContainer>
+        <SymbolButtonChipContainer>
+          <Chip
+            kind={
+              instruction === Instructions.buy
+                ? ChipKinds.primary
+                : instruction === Instructions.hold
+                ? ChipKinds.secondary
+                : ChipKinds.tertiary
+            }>
+            {instruction}
+          </Chip>
+        </SymbolButtonChipContainer>
 
-      <SymbolButtonReturnContainer>
-        <SymbolButtonText>{expectedReturn}%</SymbolButtonText>
-      </SymbolButtonReturnContainer>
-    </SymbolButtonContainer>
+        <SymbolButtonReturnContainer>
+          <SymbolButtonText>{expectedReturn}%</SymbolButtonText>
+        </SymbolButtonReturnContainer>
+      </SymbolButtonContainer>
+    </SymbolButtonGradient>
   );
 };
