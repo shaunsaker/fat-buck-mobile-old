@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { colors } from '../colors';
 import LinearGradient from 'react-native-linear-gradient';
+import { Touchable } from './Touchable';
 
-const ButtonContainer = styled.TouchableOpacity`
+const ButtonContainer = styled(Touchable)`
   width: 152px;
   height: 40px;
   border-width: 3px;

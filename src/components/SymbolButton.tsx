@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Chip, { ChipProps as ChipPropsType } from './Chip';
 import { colors } from '../colors';
+import { Touchable } from './Touchable';
 
 const BORDER_RADIUS = 30;
-const SymbolButtonContainer = styled.TouchableOpacity`
+const SymbolButtonContainer = styled(Touchable)`
   flex-direction: row;
   align-items: center;
   border-width: 3px;

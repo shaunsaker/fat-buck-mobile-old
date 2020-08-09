@@ -5,6 +5,7 @@ import Button from './Button';
 import { Label, LabelKinds } from './Label';
 import { colors } from '../colors';
 import CloseIcon from '../icons/close.svg';
+import { TouchableIcon } from './TouchableIcon';
 
 const SideMenuContainer = styled.View`
   flex: 1;
@@ -22,7 +23,7 @@ const SideMenuHeaderContainer = styled.View`
 
 const SideMenuLogoContainer = styled.View``;
 
-const SideMenuCloseContainer = styled.TouchableOpacity``;
+const SideMenuCloseContainer = styled(TouchableIcon)``;
 
 const SideMenuContentContainer = styled.View`
   flex: 1;
@@ -55,9 +56,7 @@ export const SideMenu = ({
           <Logo />
         </SideMenuLogoContainer>
 
-        <SideMenuCloseContainer
-          hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
-          onPress={handleClose}>
+        <SideMenuCloseContainer onPress={handleClose}>
           <CloseIcon width={24} height={24} fill={colors.white} />
         </SideMenuCloseContainer>
       </SideMenuHeaderContainer>
