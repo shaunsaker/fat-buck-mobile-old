@@ -607,6 +607,8 @@ PODS:
     - React
   - RNScreens (2.10.1):
     - React
+  - RNSnackbar (2.2.3):
+    - React
   - RNSVG (12.1.0):
     - React
   - SSZipArchive (2.2.3)
@@ -671,6 +673,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -776,6 +779,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSnackbar:
+    :path: "../node_modules/react-native-snackbar"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -843,6 +848,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
   RNReanimated: 7de2dca51deacff78bb880f63c1389a24311b376
   RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
+  RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
