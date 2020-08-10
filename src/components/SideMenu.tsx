@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, ReactNode } from 'react';
 import styled from 'styled-components/native';
 import Logo from './Logo';
 import Button, { ButtonKinds } from './Button';
@@ -6,8 +6,15 @@ import { Label, LabelKinds } from './Label';
 import { colors } from '../colors';
 import CloseIcon from '../icons/close.svg';
 import { TouchableIcon } from './TouchableIcon';
+import pkg from '../../package.json';
+import RNSideMenu, { ReactNativeSideMenuProps } from 'react-native-side-menu';
+import { Animated } from 'react-native';
+import { Background } from './Background';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsSideMenuOpen } from '../sideMenu/selectors';
+import { setSideMenuIsOpen } from '../store/actions';
 
-const SideMenuContainer = styled.View`
+const SideMenuContainer = styled.SafeAreaView`
   flex: 1;
   border-right-width: 3px;
   border-style: solid;
@@ -38,40 +45,109 @@ const SideMenuVersionContainer = styled.View`
   justify-content: flex-end;
 `;
 
-interface SideMenuProps {
+interface SideMenuComponentProps {
   version: string;
   handleClose: () => void;
   handleGetInTouch: () => void;
 }
 
-export const SideMenu = ({
+const SideMenuComponent = ({
   version,
   handleClose,
   handleGetInTouch,
-}: SideMenuProps) => {
+}: SideMenuComponentProps) => {
   return (
-    <SideMenuContainer>
-      <SideMenuHeaderContainer>
-        <SideMenuLogoContainer>
-          <Logo />
-        </SideMenuLogoContainer>
+    <Background>
+      <SideMenuContainer>
+        <SideMenuHeaderContainer>
+          <SideMenuLogoContainer>
+            <Logo />
+          </SideMenuLogoContainer>
 
-        <SideMenuCloseIconContainer onPress={handleClose}>
-          <CloseIcon width={24} height={24} fill={colors.white} />
-        </SideMenuCloseIconContainer>
-      </SideMenuHeaderContainer>
+          <SideMenuCloseIconContainer onPress={handleClose}>
+            <CloseIcon width={24} height={24} fill={colors.white} />
+          </SideMenuCloseIconContainer>
+        </SideMenuHeaderContainer>
 
-      <SideMenuContentContainer>
-        <SideMenuButtonContainer>
-          <Button kind={ButtonKinds.primary} onPress={handleGetInTouch}>
-            Get in touch
-          </Button>
-        </SideMenuButtonContainer>
+        <SideMenuContentContainer>
+          <SideMenuButtonContainer>
+            <Button kind={ButtonKinds.primary} onPress={handleGetInTouch}>
+              Get in touch
+            </Button>
+          </SideMenuButtonContainer>
 
-        <SideMenuVersionContainer>
-          <Label kind={LabelKinds.primary}>{version}</Label>
-        </SideMenuVersionContainer>
-      </SideMenuContentContainer>
-    </SideMenuContainer>
+          <SideMenuVersionContainer>
+            <Label kind={LabelKinds.primary}>{version}</Label>
+          </SideMenuVersionContainer>
+        </SideMenuContentContainer>
+      </SideMenuContainer>
+    </Background>
+  );
+};
+
+interface SideMenuBaseProps extends ReactNativeSideMenuProps {
+  children: ReactNode;
+  handleSideMenuChange: () => void;
+}
+
+const SideMenuBase = ({
+  menu,
+  isOpen,
+  children,
+  handleSideMenuChange,
+}: SideMenuBaseProps) => {
+  return (
+    <RNSideMenu
+      menu={menu}
+      isOpen={isOpen}
+      onChange={handleSideMenuChange}
+      openMenuOffset={300}
+      bounceBackOnOverdraw={false}
+      animationFunction={(prop: any, value: any) =>
+        Animated.spring(prop, {
+          toValue: value,
+          friction: 20,
+          useNativeDriver: true,
+        })
+      }>
+      {children}
+    </RNSideMenu>
+  );
+};
+
+interface SideMenuProps {
+  children: ReactNode;
+}
+
+export const SideMenu = ({ children }: SideMenuProps) => {
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectIsSideMenuOpen);
+
+  const onSideMenuChange = useCallback(
+    (nextIsOpen: boolean) => {
+      dispatch(setSideMenuIsOpen(nextIsOpen));
+    },
+    [dispatch],
+  );
+
+  const onClose = useCallback(() => {
+    dispatch(setSideMenuIsOpen(false));
+  }, [dispatch]);
+
+  const onGetInTouch = useCallback(() => {}, []);
+
+  return (
+    <SideMenuBase
+      menu={
+        <SideMenuComponent
+          version={`v${pkg.version}`}
+          handleClose={onClose}
+          handleGetInTouch={onGetInTouch}
+        />
+      }
+      isOpen={isOpen}
+      handleSideMenuChange={onSideMenuChange}>
+      {children}
+    </SideMenuBase>
   );
 };

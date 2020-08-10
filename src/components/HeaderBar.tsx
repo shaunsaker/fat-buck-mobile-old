@@ -4,6 +4,8 @@ import MenuIcon from '../icons/menu.svg';
 import Logo from './Logo';
 import { colors } from '../colors';
 import { TouchableIcon } from './TouchableIcon';
+import { useDispatch } from 'react-redux';
+import { setSideMenuIsOpen } from '../store/actions';
 
 const HeaderBarContainer = styled.View`
   flex-direction: row;
@@ -36,7 +38,11 @@ const HeaderBarBase = ({ handleMenuPress }: HeaderBarProps) => {
 };
 
 export const HeaderBar = () => {
-  const onMenuPress = useCallback(() => {}, []);
+  const dispatch = useDispatch();
+
+  const onMenuPress = useCallback(() => {
+    dispatch(setSideMenuIsOpen(true));
+  }, [dispatch]);
 
   return <HeaderBarBase handleMenuPress={onMenuPress} />;
 };
