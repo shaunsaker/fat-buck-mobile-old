@@ -13,6 +13,8 @@ import { Background } from './Background';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsSideMenuOpen } from '../sideMenu/selectors';
 import { setSideMenuIsOpen } from '../store/actions';
+import { useLinking } from './useLinking';
+import { config } from '../config';
 
 const SideMenuContainer = styled.SafeAreaView`
   flex: 1;
@@ -87,7 +89,7 @@ const SideMenuComponent = ({
 
 interface SideMenuBaseProps extends ReactNativeSideMenuProps {
   children: ReactNode;
-  handleSideMenuChange: () => void;
+  handleSideMenuChange: (nextIsOpen: boolean) => void;
 }
 
 const SideMenuBase = ({
@@ -122,6 +124,7 @@ interface SideMenuProps {
 export const SideMenu = ({ children }: SideMenuProps) => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsSideMenuOpen);
+  const { openLink } = useLinking();
 
   const onSideMenuChange = useCallback(
     (nextIsOpen: boolean) => {
@@ -134,7 +137,9 @@ export const SideMenu = ({ children }: SideMenuProps) => {
     dispatch(setSideMenuIsOpen(false));
   }, [dispatch]);
 
-  const onGetInTouch = useCallback(() => {}, []);
+  const onGetInTouch = useCallback(() => {
+    openLink(`mailto:${config.contactEmail}`);
+  }, [openLink]);
 
   return (
     <SideMenuBase
