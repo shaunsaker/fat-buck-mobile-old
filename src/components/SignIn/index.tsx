@@ -7,7 +7,6 @@ import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 const SignInContainer = styled.View`
   flex: 1;
-  padding: 0 20px 20px;
 `;
 
 const SignInFormContainer = styled.KeyboardAvoidingView`
@@ -19,7 +18,7 @@ const SignInFormInnerContainer = styled.KeyboardAvoidingView`
 `;
 
 const SignInInputContainer = styled.View`
-  margin-top: 20px;
+  margin: 20px 20px 0;
 `;
 
 const SignInButtonContainer = styled.View`
