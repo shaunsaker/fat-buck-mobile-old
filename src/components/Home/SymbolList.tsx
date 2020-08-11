@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
 import { Label, LabelKinds } from '../Label';
-import { SymbolButton, SymbolButtonProps } from '../SymbolButton';
+import { SymbolButton, SymbolButtonProps } from './SymbolButton';
 import { FlatList } from 'react-native';
 import { Instructions } from '../../models';
 

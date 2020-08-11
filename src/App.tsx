@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
+import { SignIn } from './components/SignIn';
 
 const AppContainer = styled.SafeAreaView`
   flex: 1;
@@ -23,7 +24,8 @@ const App = () => {
         <SideMenu>
           <Background>
             <AppContainer>
-              <Home />
+              {/* <Home /> */}
+              <SignIn />
             </AppContainer>
           </Background>
         </SideMenu>
