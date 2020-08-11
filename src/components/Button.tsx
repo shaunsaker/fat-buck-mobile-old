@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { colors } from '../colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { Touchable } from './Touchable';
@@ -19,15 +19,23 @@ const ButtonContainer = styled(Touchable)<ButtonContainerProps>`
   border-width: 3px;
   border-style: solid;
   border-color: ${({ kind }) =>
-    kind === ButtonKinds.primary ? colors.green : colors.transWhite};
+    kind === ButtonKinds.primary ? colors.green : colors.grey};
   border-radius: 20px;
 `;
 
-const ButtonGradient = styled(LinearGradient)`
+const ButtonCss = css`
   flex: 1;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+`;
+
+const ButtonGradient = styled(LinearGradient)`
+  ${ButtonCss}
+`;
+
+const ButtonBackground = styled.View`
+  ${ButtonCss}
 `;
 
 const ButtonText = styled.Text`
@@ -45,16 +53,18 @@ interface ButtonProps {
 export const Button = ({ kind, onPress, children }: ButtonProps) => {
   return (
     <ButtonContainer kind={kind} onPress={onPress}>
-      <ButtonGradient
-        start={{ x: 0, y: 0.25 }}
-        end={{ x: 1.5, y: 1.5 }}
-        colors={[
-          kind === ButtonKinds.primary ? colors.green : colors.black,
-          colors.blue,
-          colors.black,
-        ]}>
-        <ButtonText>{children}</ButtonText>
-      </ButtonGradient>
+      {kind === ButtonKinds.primary ? (
+        <ButtonGradient
+          start={{ x: 0, y: 0.25 }}
+          end={{ x: 1.5, y: 1.5 }}
+          colors={[colors.green, colors.blue, colors.black]}>
+          <ButtonText>{children}</ButtonText>
+        </ButtonGradient>
+      ) : (
+        <ButtonBackground>
+          <ButtonText>{children}</ButtonText>
+        </ButtonBackground>
+      )}
     </ButtonContainer>
   );
 };
