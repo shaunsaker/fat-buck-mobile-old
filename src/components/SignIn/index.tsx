@@ -1,16 +1,13 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components/native';
 import { HeaderBar } from '../HeaderBar';
 import { Input } from '../Input';
 import Button, { ButtonKinds } from '../Button';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn, signInError } from '../../auth/actions';
-import {
-  selectIsAuthenticated,
-  selectIsAuthLoading,
-} from '../../auth/selectors';
-import { Snackbar } from '../Snackbar';
+import { signIn } from '../../auth/actions';
+import { selectIsAuthLoading } from '../../auth/selectors';
+import { Background } from '../Background';
 
 const SignInContainer = styled.View`
   flex: 1;
@@ -54,45 +51,47 @@ const SignInBase = ({
   handleDismissKeyboard,
 }: SignInBaseProps) => {
   return (
-    <SignInContainer>
-      <HeaderBar text="Sign In" />
+    <Background>
+      <SignInContainer>
+        <HeaderBar text="Sign In" />
 
-      <SignInFormContainer>
-        <TouchableWithoutFeedback onPress={handleDismissKeyboard}>
-          <SignInFormInnerContainer>
-            <SignInInputContainer>
-              <Input
-                placeholder="Email"
-                keyboardType="email-address"
-                value={email}
-                onChangeText={handleChangeEmail}
-                onSubmitEditing={handleDismissKeyboard}
-              />
-            </SignInInputContainer>
+        <SignInFormContainer>
+          <TouchableWithoutFeedback onPress={handleDismissKeyboard}>
+            <SignInFormInnerContainer>
+              <SignInInputContainer>
+                <Input
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  value={email}
+                  onChangeText={handleChangeEmail}
+                  onSubmitEditing={handleDismissKeyboard}
+                />
+              </SignInInputContainer>
 
-            <SignInInputContainer>
-              <Input
-                placeholder="Password"
-                secureTextEntry
-                value={password}
-                onChangeText={handleChangePassword}
-                onSubmitEditing={handleSubmit}
-              />
-            </SignInInputContainer>
+              <SignInInputContainer>
+                <Input
+                  placeholder="Password"
+                  secureTextEntry
+                  value={password}
+                  onChangeText={handleChangePassword}
+                  onSubmitEditing={handleSubmit}
+                />
+              </SignInInputContainer>
 
-            <SignInButtonContainer>
-              <Button
-                kind={ButtonKinds.primary}
-                loading={isLoading}
-                disabled={isDisabled}
-                onPress={handleSubmit}>
-                SUBMIT
-              </Button>
-            </SignInButtonContainer>
-          </SignInFormInnerContainer>
-        </TouchableWithoutFeedback>
-      </SignInFormContainer>
-    </SignInContainer>
+              <SignInButtonContainer>
+                <Button
+                  kind={ButtonKinds.primary}
+                  loading={isLoading}
+                  disabled={isDisabled}
+                  onPress={handleSubmit}>
+                  SUBMIT
+                </Button>
+              </SignInButtonContainer>
+            </SignInFormInnerContainer>
+          </TouchableWithoutFeedback>
+        </SignInFormContainer>
+      </SignInContainer>
+    </Background>
   );
 };
 
@@ -102,13 +101,6 @@ export const SignIn = () => {
   const [password, setPassword] = useState('');
   const isLoading = useSelector(selectIsAuthLoading);
   const isDisabled = isLoading || !email || !password;
-  const isAuthenticated = useSelector(selectIsAuthenticated);
-
-  useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      // TODO: navigate
-    }
-  }, [dispatch, isLoading, isAuthenticated]);
 
   const onChangeEmail = useCallback((text: string) => {
     setEmail(text);

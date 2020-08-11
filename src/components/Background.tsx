@@ -7,6 +7,10 @@ const BackgroundContainer = styled(LinearGradient)`
   flex: 1;
 `;
 
+const BackgroundContentContainer = styled.SafeAreaView`
+  flex: 1;
+`;
+
 interface BackgroundProps {
   children?: ReactNode;
 }
@@ -17,7 +21,7 @@ export const Background = ({ children }: BackgroundProps) => {
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1.5 }}
       colors={[colors.black, colors.green]}>
-      {children}
+      <BackgroundContentContainer>{children}</BackgroundContentContainer>
     </BackgroundContainer>
   );
 };

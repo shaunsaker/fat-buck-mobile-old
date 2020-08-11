@@ -17,7 +17,7 @@ import { useLinking } from './useLinking';
 import { config } from '../config';
 import { selectIsAuthenticated } from '../auth/selectors';
 
-const SideMenuContainer = styled.SafeAreaView`
+const SideMenuContainer = styled.View`
   flex: 1;
   border-right-width: 3px;
   border-style: solid;
@@ -159,7 +159,7 @@ export const SideMenu = ({ children }: SideMenuProps) => {
 
   const onSignOut = useCallback(() => {
     dispatch(signOut());
-  }, []);
+  }, [dispatch]);
 
   return (
     <SideMenuBase

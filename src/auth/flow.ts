@@ -18,6 +18,7 @@ import {
   createUserWithEmailAndPassword,
   signUserOut,
 } from './services';
+import { setSideMenuIsOpen } from '../store/actions';
 
 export function* authLoadingFlow(): Generator {
   // if auth is loading on rehydrate, there was an error somewhere
@@ -72,6 +73,7 @@ export function* signOutFlow(): Generator {
   yield takeLatest(AuthActionTypes.SIGN_OUT, function* (): SagaIterator {
     yield call(signUserOut);
     yield put(signOutSuccess());
+    yield put(setSideMenuIsOpen(false));
     Snackbar.show('Sign out success.');
   });
 }

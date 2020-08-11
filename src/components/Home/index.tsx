@@ -4,10 +4,7 @@ import { HeaderBar } from '../HeaderBar';
 import { SelectExchangeButton } from './SelectExchangeButton';
 import { SymbolList } from './SymbolList';
 import { ExchangesModal } from '../ExchangesModal';
-
-const HomeContainer = styled.View`
-  flex: 1;
-`;
+import { Background } from '../Background';
 
 const HomeSelectExchangeButtonContainer = styled.View`
   align-items: center;
@@ -15,8 +12,8 @@ const HomeSelectExchangeButtonContainer = styled.View`
 
 export const Home = () => {
   return (
-    <HomeContainer>
-      <HeaderBar />
+    <Background>
+      <HeaderBar text="Fat Buck" />
 
       <HomeSelectExchangeButtonContainer>
         <SelectExchangeButton />
@@ -25,6 +22,6 @@ export const Home = () => {
       <SymbolList />
 
       <ExchangesModal />
-    </HomeContainer>
+    </Background>
   );
 };
