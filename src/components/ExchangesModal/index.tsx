@@ -5,7 +5,7 @@ import { colors } from '../../colors';
 import { LabelKinds, Label } from '../Label';
 import { CloseButton } from '../CloseButton';
 import { ExchangeList } from './ExchangeList';
-import { selectExchangesModelIsOpen } from '../../exchangesModal/selectors';
+import { selectExchangesModalIsOpen } from '../../exchangesModal/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { setExchangesModelIsOpen } from '../../store/actions';
 
@@ -67,7 +67,7 @@ const ExchangesModalBase = ({ isOpen, handleClose }: ExchangesModalProps) => {
 
 export const ExchangesModal = () => {
   const dispatch = useDispatch();
-  const isOpen = useSelector(selectExchangesModelIsOpen);
+  const isOpen = useSelector(selectExchangesModalIsOpen);
 
   const onClose = useCallback(() => {
     dispatch(setExchangesModelIsOpen(false));
