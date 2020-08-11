@@ -1,9 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { HeaderBar } from '../HeaderBar';
 import { Input } from '../Input';
 import Button, { ButtonKinds } from '../Button';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn, signInError } from '../../auth/actions';
+import {
+  selectIsAuthenticated,
+  selectIsAuthLoading,
+} from '../../auth/selectors';
+import { Snackbar } from '../Snackbar';
 
 const SignInContainer = styled.View`
   flex: 1;
@@ -26,6 +33,8 @@ const SignInButtonContainer = styled.View`
   align-self: center;
 `;
 interface SignInBaseProps {
+  isLoading: boolean;
+  isDisabled: boolean;
   email: string;
   handleChangeEmail: (email: string) => void;
   password: string;
@@ -35,6 +44,8 @@ interface SignInBaseProps {
 }
 
 const SignInBase = ({
+  isLoading,
+  isDisabled,
   email,
   handleChangeEmail,
   password,
@@ -70,7 +81,11 @@ const SignInBase = ({
             </SignInInputContainer>
 
             <SignInButtonContainer>
-              <Button kind={ButtonKinds.primary} onPress={handleSubmit}>
+              <Button
+                kind={ButtonKinds.primary}
+                loading={isLoading}
+                disabled={isDisabled}
+                onPress={handleSubmit}>
                 SUBMIT
               </Button>
             </SignInButtonContainer>
@@ -82,8 +97,18 @@ const SignInBase = ({
 };
 
 export const SignIn = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isLoading = useSelector(selectIsAuthLoading);
+  const isDisabled = isLoading || !email || !password;
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      // TODO: navigate
+    }
+  }, [dispatch, isLoading, isAuthenticated]);
 
   const onChangeEmail = useCallback((text: string) => {
     setEmail(text);
@@ -97,10 +122,15 @@ export const SignIn = () => {
     Keyboard.dismiss();
   }, []);
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(() => {
+    Keyboard.dismiss();
+    dispatch(signIn(email, password));
+  }, [dispatch, email, password]);
 
   return (
     <SignInBase
+      isLoading={isLoading}
+      isDisabled={isDisabled}
       email={email}
       handleChangeEmail={onChangeEmail}
       password={password}

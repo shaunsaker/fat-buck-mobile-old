@@ -10,5 +10,7 @@ export const Snackbar = {
       duration: 4000,
       text,
     });
+
+    return null;
   },
 };

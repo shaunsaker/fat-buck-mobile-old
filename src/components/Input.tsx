@@ -26,6 +26,8 @@ const InputBase = ({
   placeholder,
   handleFocus,
   handleBlur,
+  value,
+  onChangeText,
 }: InputBaseProps) => {
   return (
     <ButtonContainer active={isFocussed}>
@@ -34,6 +36,8 @@ const InputBase = ({
         placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        value={value}
+        onChangeText={onChangeText}
       />
     </ButtonContainer>
   );

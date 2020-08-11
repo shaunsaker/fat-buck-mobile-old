@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components/native';
 import { colors } from '../colors';
 import LinearGradient from 'react-native-linear-gradient';
 import { Touchable } from './Touchable';
+import { ActivityIndicator } from 'react-native';
 
 export enum ButtonKinds {
   primary,
@@ -46,24 +47,36 @@ const ButtonText = styled.Text`
 
 interface ButtonProps {
   kind: ButtonKinds;
+  loading?: boolean;
+  disabled?: boolean;
   children: string;
   onPress: () => void;
 }
 
-export const Button = ({ kind, onPress, children }: ButtonProps) => {
+export const Button = ({
+  kind,
+  loading,
+  disabled,
+  onPress,
+  children,
+}: ButtonProps) => {
+  const childComponent = loading ? (
+    <ActivityIndicator size="small" color={colors.white} />
+  ) : (
+    <ButtonText>{children}</ButtonText>
+  );
+
   return (
-    <ButtonContainer kind={kind} onPress={onPress}>
+    <ButtonContainer kind={kind} disabled={disabled} onPress={onPress}>
       {kind === ButtonKinds.primary ? (
         <ButtonGradient
           start={{ x: 0, y: 0.25 }}
           end={{ x: 1.5, y: 1.5 }}
           colors={[colors.green, colors.blue, colors.black]}>
-          <ButtonText>{children}</ButtonText>
+          {childComponent}
         </ButtonGradient>
       ) : (
-        <ButtonBackground>
-          <ButtonText>{children}</ButtonText>
-        </ButtonBackground>
+        <ButtonBackground>{childComponent}</ButtonBackground>
       )}
     </ButtonContainer>
   );

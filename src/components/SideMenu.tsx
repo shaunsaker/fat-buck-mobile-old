@@ -12,9 +12,10 @@ import { Animated } from 'react-native';
 import { Background } from './Background';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsSideMenuOpen } from '../sideMenu/selectors';
-import { setSideMenuIsOpen } from '../store/actions';
+import { setSideMenuIsOpen, signOut } from '../store/actions';
 import { useLinking } from './useLinking';
 import { config } from '../config';
+import { selectIsAuthenticated } from '../auth/selectors';
 
 const SideMenuContainer = styled.SafeAreaView`
   flex: 1;
@@ -40,7 +41,9 @@ const SideMenuContentContainer = styled.View`
   padding-bottom: 20px;
 `;
 
-const SideMenuButtonContainer = styled.View``;
+const SideMenuButtonContainer = styled.View`
+  margin-bottom: 20px;
+`;
 
 const SideMenuVersionContainer = styled.View`
   flex: 1;
@@ -49,14 +52,18 @@ const SideMenuVersionContainer = styled.View`
 
 interface SideMenuComponentProps {
   version: string;
+  isAuthenticated: boolean;
   handleClose: () => void;
   handleGetInTouch: () => void;
+  handleSignOut: () => void;
 }
 
 const SideMenuComponent = ({
   version,
+  isAuthenticated,
   handleClose,
   handleGetInTouch,
+  handleSignOut,
 }: SideMenuComponentProps) => {
   return (
     <Background>
@@ -77,6 +84,14 @@ const SideMenuComponent = ({
               GET IN TOUCH
             </Button>
           </SideMenuButtonContainer>
+
+          {isAuthenticated ? (
+            <SideMenuButtonContainer>
+              <Button kind={ButtonKinds.secondary} onPress={handleSignOut}>
+                SIGN OUT
+              </Button>
+            </SideMenuButtonContainer>
+          ) : null}
 
           <SideMenuVersionContainer>
             <Label kind={LabelKinds.primary}>{version}</Label>
@@ -125,6 +140,7 @@ export const SideMenu = ({ children }: SideMenuProps) => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectIsSideMenuOpen);
   const { openLink } = useLinking();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const onSideMenuChange = useCallback(
     (nextIsOpen: boolean) => {
@@ -141,13 +157,19 @@ export const SideMenu = ({ children }: SideMenuProps) => {
     openLink(`mailto:${config.contactEmail}`);
   }, [openLink]);
 
+  const onSignOut = useCallback(() => {
+    dispatch(signOut());
+  }, []);
+
   return (
     <SideMenuBase
       menu={
         <SideMenuComponent
           version={`v${pkg.version}`}
+          isAuthenticated={isAuthenticated}
           handleClose={onClose}
           handleGetInTouch={onGetInTouch}
+          handleSignOut={onSignOut}
         />
       }
       isOpen={isOpen}
