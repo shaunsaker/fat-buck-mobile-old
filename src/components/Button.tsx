@@ -49,7 +49,7 @@ export const Button = ({ kind, onPress, children }: ButtonProps) => {
         start={{ x: 0, y: 0.25 }}
         end={{ x: 1.5, y: 1.5 }}
         colors={[
-          kind === ButtonKinds.primary ? colors.green : colors.lightGreen,
+          kind === ButtonKinds.primary ? colors.green : colors.black,
           colors.blue,
           colors.black,
         ]}>

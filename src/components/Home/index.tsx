@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { HeaderBar } from '../HeaderBar';
 import { SelectExchangeButton } from './SelectExchangeButton';
 import { SymbolList } from './SymbolList';
+import { ExchangesModal } from '../ExchangesModal';
 
 const HomeContainer = styled.View`
   flex: 1;
@@ -22,6 +23,8 @@ export const Home = () => {
       </HomeSelectExchangeButtonContainer>
 
       <SymbolList />
+
+      <ExchangesModal />
     </HomeContainer>
   );
 };

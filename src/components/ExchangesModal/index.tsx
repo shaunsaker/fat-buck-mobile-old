@@ -5,38 +5,50 @@ import { colors } from '../../colors';
 import { LabelKinds, Label } from '../Label';
 import { CloseButton } from '../CloseButton';
 import { ExchangeList } from './ExchangeList';
+import { selectExchangesModelIsOpen } from '../../exchangesModal/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { setExchangesModelIsOpen } from '../../store/actions';
 
 const ExchangesModalContainer = styled.View``;
 
 const ExchangesModalContentContainer = styled.View`
-  background-color: ${colors.lightGreen};
+  background-color: ${colors.black};
   margin: 0 20px;
   border-width: 3px;
   border-style: solid;
-  border-color: ${colors.green};
+  border-color: ${colors.yellow};
   border-radius: 20px;
   overflow: hidden;
   padding: 20px;
+  max-width: 320px;
 `;
 
 const ExchangesModalLabelContainer = styled.View`
   align-items: center;
+  margin-bottom: 5px;
 `;
 
 const ExchangesModalCloseIconContainer = styled.View`
   position: absolute;
-  top: 17;
-  right: 17;
+  top: 17px;
+  right: 17px;
 `;
 
 interface ExchangesModalProps {
+  isOpen: boolean;
   handleClose: () => void;
 }
 
-const ExchangesModalBase = ({ handleClose }: ExchangesModalProps) => {
+const ExchangesModalBase = ({ isOpen, handleClose }: ExchangesModalProps) => {
   return (
     <ExchangesModalContainer>
-      <Modal isVisible>
+      <Modal
+        isVisible={isOpen}
+        backdropColor={colors.black}
+        animationIn="fadeInUp"
+        animationOut="fadeOutDown"
+        useNativeDriver
+        hideModalContentWhileAnimating>
         <ExchangesModalContentContainer>
           <ExchangesModalLabelContainer>
             <Label kind={LabelKinds.primary}>Select an Exchange</Label>
@@ -54,7 +66,12 @@ const ExchangesModalBase = ({ handleClose }: ExchangesModalProps) => {
 };
 
 export const ExchangesModal = () => {
-  const onClose = useCallback(() => {}, []);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectExchangesModelIsOpen);
 
-  return <ExchangesModalBase handleClose={onClose} />;
+  const onClose = useCallback(() => {
+    dispatch(setExchangesModelIsOpen(false));
+  }, [dispatch]);
+
+  return <ExchangesModalBase isOpen={isOpen} handleClose={onClose} />;
 };
