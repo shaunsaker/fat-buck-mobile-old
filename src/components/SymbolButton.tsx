@@ -58,7 +58,8 @@ export const SymbolButton = ({
       start={{ x: 0, y: 0.25 }}
       end={{ x: 1.5, y: 1.5 }}
       colors={[colors.transWhite, colors.lightGreen, colors.black]}>
-      <SymbolButtonContainer onPress={onPress}>
+      {/* disable these buttons until we release the Symbol page feature */}
+      <SymbolButtonContainer onPress={onPress} disabled>
         <SymbolButtonNameContainer>
           <SymbolButtonText>{name}</SymbolButtonText>
         </SymbolButtonNameContainer>
