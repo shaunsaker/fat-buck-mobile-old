@@ -74,7 +74,7 @@ const SideMenuComponent = ({
         <SideMenuContentContainer>
           <SideMenuButtonContainer>
             <Button kind={ButtonKinds.primary} onPress={handleGetInTouch}>
-              Get in touch
+              GET IN TOUCH
             </Button>
           </SideMenuButtonContainer>
 
