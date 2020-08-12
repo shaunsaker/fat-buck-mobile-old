@@ -1,4 +1,7 @@
 import { ApplicationState } from '../store/reducers';
 
+export const selectExchangesModalIsOpen = (state: ApplicationState) =>
+  state.exchanges.exchangesModalIsOpen;
+
 export const selectSelectedExchange = (state: ApplicationState) =>
   state.exchanges.selectedExchange;
