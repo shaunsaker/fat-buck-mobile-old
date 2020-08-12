@@ -44,7 +44,7 @@ function* signInFlow(): Generator {
       );
 
       yield put(signInSuccess(user.user.uid, user.user.email));
-      yield put(showSnackbar('Sign in success'));
+      yield put(showSnackbar('Sign in success.'));
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         // if the user wasn't found, attempt to create the user
@@ -56,7 +56,7 @@ function* signInFlow(): Generator {
           );
 
           yield put(signInSuccess(user.user.uid, user.user.email));
-          yield put(showSnackbar('Sign in success'));
+          yield put(showSnackbar('Sign in success.'));
         } catch (createUserError) {
           yield put(showSnackbar(createUserError.message));
           yield put(signOutError());
@@ -74,7 +74,7 @@ function* signOutFlow(): Generator {
     yield call(signUserOut);
     yield put(signOutSuccess());
     yield put(setSideMenuIsOpen(false));
-    yield put(showSnackbar('Sign out success'));
+    yield put(showSnackbar('Sign out success.'));
   });
 }
 
