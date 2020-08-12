@@ -5,9 +5,9 @@ import {
   BUTTON_CONTAINER_BORDER_RADIUS,
 } from './ButtonContainer';
 import { colors } from '../colors';
-import { TextInputProperties } from 'react-native';
+import { TextInputProperties, TextInput } from 'react-native';
 
-const InputContainer = styled.TextInput`
+const InputContainer = styled(TextInput)`
   flex: 1;
   padding: 0 ${BUTTON_CONTAINER_BORDER_RADIUS}px;
   font-family: 'Recursive-Bold';
@@ -26,18 +26,16 @@ const InputBase = ({
   placeholder,
   handleFocus,
   handleBlur,
-  value,
-  onChangeText,
+  ...props
 }: InputBaseProps) => {
   return (
     <ButtonContainer active={isFocussed}>
       <InputContainer
+        {...props}
         placeholderTextColor={colors.grey}
         placeholder={placeholder}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        value={value}
-        onChangeText={onChangeText}
       />
     </ButtonContainer>
   );
