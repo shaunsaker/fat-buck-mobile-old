@@ -48,8 +48,8 @@ export const SymbolButton = ({
 }: SymbolButtonProps) => {
   return (
     <ButtonContainer>
-      {/* disable these buttons until we release the Symbol page feature */}
-      <SymbolButtonContainer onPress={onPress}>
+      {/* TODO: disable these buttons until we release the Symbol page feature */}
+      <SymbolButtonContainer onPress={onPress} disabled>
         <SymbolButtonNameContainer>
           <SymbolButtonText>{name}</SymbolButtonText>
         </SymbolButtonNameContainer>
