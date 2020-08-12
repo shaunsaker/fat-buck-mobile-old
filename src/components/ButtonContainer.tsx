@@ -10,7 +10,7 @@ const ButtonContainerGradient = styled(LinearGradient)`
 `;
 
 interface ButtonContainerInnerContainerProps {
-  active: boolean;
+  active?: boolean;
 }
 
 const ButtonContainerInnerContainer = styled.View<
@@ -24,7 +24,7 @@ const ButtonContainerInnerContainer = styled.View<
 `;
 
 interface ButtonContainerProps {
-  active: boolean;
+  active?: boolean;
   children: ReactNode;
 }
 
