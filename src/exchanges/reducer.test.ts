@@ -1,10 +1,18 @@
 import { exchangesReducer, initialState } from './reducer';
-import { setSelectedExchange } from './actions';
+import { setSelectedExchange, setExchangesModalIsOpen } from './actions';
 
 describe('exchanges reducer', () => {
-  const selectedExchange = 'US';
+  it('sets exchangesModalOpen correctly', () => {
+    const nextState = exchangesReducer(
+      initialState,
+      setExchangesModalIsOpen(true),
+    );
+
+    expect(nextState.exchangesModalIsOpen).toEqual(true);
+  });
 
   it('sets the selected exchange correctly', () => {
+    const selectedExchange = 'US';
     const nextState = exchangesReducer(
       initialState,
       setSelectedExchange(selectedExchange),
