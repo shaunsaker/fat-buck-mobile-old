@@ -19,7 +19,7 @@ import {
 } from './services';
 import { setSideMenuIsOpen, showSnackbar } from '../store/actions';
 
-function* rehydrateFlow(): Generator {
+export function* authRehydrateFlow(): Generator {
   // we don't want to persist auth loading state but we can't blacklist it because it's not it's own reducer
   // let's reset it on rehydrate
   yield takeLatest(REHYDRATE, function* (): SagaIterator {
@@ -31,7 +31,10 @@ function* rehydrateFlow(): Generator {
   });
 }
 
-function* signInFlow(): Generator {
+export const SIGN_IN_SUCCESS_MESSAGE = 'Sign in success.';
+export const USER_NOT_FOUND_ERROR_MESSAGE = 'User not found.'; // TODO: test this;
+
+export function* signInFlow(): Generator {
   yield takeLatest(AuthActionTypes.SIGN_IN, function* (
     action: ActionType<typeof signIn>,
   ): SagaIterator {
@@ -44,9 +47,9 @@ function* signInFlow(): Generator {
       );
 
       yield put(signInSuccess(user.user.uid, user.user.email));
-      yield put(showSnackbar('Sign in success.'));
+      yield put(showSnackbar(SIGN_IN_SUCCESS_MESSAGE));
     } catch (error) {
-      if (error.code === 'auth/user-not-found') {
+      if (error.message === USER_NOT_FOUND_ERROR_MESSAGE) {
         // if the user wasn't found, attempt to create the user
         try {
           const user: FirebaseAuthTypes.UserCredential = yield call(
@@ -56,7 +59,7 @@ function* signInFlow(): Generator {
           );
 
           yield put(signInSuccess(user.user.uid, user.user.email));
-          yield put(showSnackbar('Sign in success.'));
+          yield put(showSnackbar(SIGN_IN_SUCCESS_MESSAGE));
         } catch (createUserError) {
           yield put(showSnackbar(createUserError.message));
           yield put(signOutError());
@@ -69,17 +72,19 @@ function* signInFlow(): Generator {
   });
 }
 
-function* signOutFlow(): Generator {
+export const SIGN_OUT_SUCCESS_MESSAGE = 'Sign out success.';
+
+export function* signOutFlow(): Generator {
   yield takeLatest(AuthActionTypes.SIGN_OUT, function* (): SagaIterator {
     yield call(signUserOut);
     yield put(signOutSuccess());
     yield put(setSideMenuIsOpen(false));
-    yield put(showSnackbar('Sign out success.'));
+    yield put(showSnackbar(SIGN_OUT_SUCCESS_MESSAGE));
   });
 }
 
 export function* authFlow(): Generator {
-  yield fork(rehydrateFlow);
+  yield fork(authRehydrateFlow);
   yield fork(signInFlow);
   yield fork(signOutFlow);
 }
