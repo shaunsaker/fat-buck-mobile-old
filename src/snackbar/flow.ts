@@ -5,7 +5,7 @@ import { ActionType } from 'typesafe-actions';
 import { SagaIterator } from 'redux-saga';
 import { Snackbar } from '../components/Snackbar';
 
-function* showSnackbarFlow(): Generator {
+function* showSnackbarFlow(): SagaIterator {
   yield takeLatest(SnackbarActionTypes.SHOW_SNACKBAR, function* (
     action: ActionType<typeof showSnackbar>,
   ): SagaIterator {
@@ -13,6 +13,6 @@ function* showSnackbarFlow(): Generator {
   });
 }
 
-export function* snackbarFlow(): Generator {
+export function* snackbarFlow(): SagaIterator {
   yield fork(showSnackbarFlow);
 }

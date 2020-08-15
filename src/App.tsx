@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { SideMenu } from './components/SideMenu';
 import { Provider } from 'react-redux';
@@ -9,6 +9,10 @@ import { Router } from './Router';
 declare const global: { HermesInternal: null | {} };
 
 const App = () => {
+  // useEffect(() => {
+  //   persistor.purge();
+  // }, []);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

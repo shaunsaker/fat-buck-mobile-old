@@ -3,10 +3,13 @@ import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import Button, { ButtonKinds } from '../Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSelectedExchange } from '../../exchanges/selectors';
+import {
+  selectSelectedExchange,
+  selectExchanges,
+} from '../../exchanges/selectors';
 import {
   setSelectedExchange,
-  setExchangesModelIsOpen,
+  setExchangesModalIsOpen,
 } from '../../store/actions';
 
 const ExchangeListItemContainer = styled.View`
@@ -55,13 +58,13 @@ const ExchangeListBase = ({
 
 export const ExchangeList = () => {
   const dispatch = useDispatch();
-  const exchanges = ['AU', 'JSE', 'US'];
+  const exchanges = useSelector(selectExchanges);
   const selectedExchange = useSelector(selectSelectedExchange);
 
   const onSelectExchange = useCallback(
     (exchange) => {
       dispatch(setSelectedExchange(exchange));
-      dispatch(setExchangesModelIsOpen(false));
+      dispatch(setExchangesModalIsOpen(false));
     },
     [dispatch],
   );

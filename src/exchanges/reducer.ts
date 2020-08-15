@@ -4,6 +4,8 @@ import { ExchangesActionTypes, ExchangesState } from './models';
 export const initialState: ExchangesState = {
   exchangesModalIsOpen: false,
   selectedExchange: '',
+  exchanges: [],
+  loading: true,
 };
 
 export const exchangesReducer: Reducer<ExchangesState> = (
@@ -21,6 +23,25 @@ export const exchangesReducer: Reducer<ExchangesState> = (
       return {
         ...state,
         selectedExchange: action.payload.selectedExchange,
+      };
+    }
+    case ExchangesActionTypes.FETCH_EXCHANGES: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case ExchangesActionTypes.FETCH_EXCHANGES_SUCCESS: {
+      return {
+        ...state,
+        exchanges: action.payload.exchanges,
+        loading: false,
+      };
+    }
+    case ExchangesActionTypes.FETCH_EXCHANGES_ERROR: {
+      return {
+        ...state,
+        loading: false,
       };
     }
     default: {

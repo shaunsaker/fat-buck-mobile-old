@@ -5,3 +5,6 @@ export const selectExchangesModalIsOpen = (state: ApplicationState) =>
 
 export const selectSelectedExchange = (state: ApplicationState) =>
   state.exchanges.selectedExchange;
+
+export const selectExchanges = (state: ApplicationState) =>
+  Object.keys(state.exchanges.exchanges).map((key) => key);
