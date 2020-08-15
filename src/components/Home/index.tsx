@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { HeaderBar } from '../HeaderBar';
 import { SelectExchangeButton } from './SelectExchangeButton';
-import { SymbolList } from './SymbolList';
+import { StockList } from './StockList';
 import { ExchangesModal } from '../ExchangesModal';
 import { Background } from '../Background';
 
@@ -19,7 +19,7 @@ export const Home = () => {
         <SelectExchangeButton />
       </HomeSelectExchangeButtonContainer>
 
-      <SymbolList />
+      <StockList />
 
       <ExchangesModal />
     </Background>

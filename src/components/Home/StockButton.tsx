@@ -9,52 +9,52 @@ import {
   BUTTON_CONTAINER_BORDER_RADIUS,
 } from '../ButtonContainer';
 
-const SymbolButtonContainer = styled(Touchable)`
+const StockButtonContainer = styled(Touchable)`
   flex-direction: row;
   align-items: center;
   flex: 1;
   padding: 0 ${BUTTON_CONTAINER_BORDER_RADIUS}px;
 `;
 
-const SymbolButtonNameContainer = styled.View`
+const StockButtonNameContainer = styled.View`
   width: 72px;
 `;
 
-const SymbolButtonText = styled.Text`
+const StockButtonText = styled.Text`
   font-family: 'Recursive-Bold';
   font-size: 18px;
   color: ${colors.white};
 `;
 
-const SymbolButtonChipContainer = styled.View``;
+const StockButtonChipContainer = styled.View``;
 
-const SymbolButtonReturnContainer = styled.View`
+const StockButtonReturnContainer = styled.View`
   flex: 1;
   align-items: flex-end;
 `;
 
-export interface SymbolButtonProps {
+export interface StockButtonProps {
   name: string;
   instruction: Instructions;
   expectedReturn: number;
   onPress: () => void;
 }
 
-export const SymbolButton = ({
+export const StockButton = ({
   name,
   instruction,
   expectedReturn,
   onPress,
-}: SymbolButtonProps) => {
+}: StockButtonProps) => {
   return (
     <ButtonContainer>
-      {/* TODO: disable these buttons until we release the Symbol page feature */}
-      <SymbolButtonContainer onPress={onPress} disabled>
-        <SymbolButtonNameContainer>
-          <SymbolButtonText>{name}</SymbolButtonText>
-        </SymbolButtonNameContainer>
+      {/* TODO: disable these buttons until we release the Stock page feature */}
+      <StockButtonContainer onPress={onPress} disabled>
+        <StockButtonNameContainer>
+          <StockButtonText>{name}</StockButtonText>
+        </StockButtonNameContainer>
 
-        <SymbolButtonChipContainer>
+        <StockButtonChipContainer>
           <Chip
             kind={
               instruction === Instructions.buy
@@ -65,12 +65,12 @@ export const SymbolButton = ({
             }>
             {instruction}
           </Chip>
-        </SymbolButtonChipContainer>
+        </StockButtonChipContainer>
 
-        <SymbolButtonReturnContainer>
-          <SymbolButtonText>{expectedReturn}%</SymbolButtonText>
-        </SymbolButtonReturnContainer>
-      </SymbolButtonContainer>
+        <StockButtonReturnContainer>
+          <StockButtonText>{expectedReturn}%</StockButtonText>
+        </StockButtonReturnContainer>
+      </StockButtonContainer>
     </ButtonContainer>
   );
 };

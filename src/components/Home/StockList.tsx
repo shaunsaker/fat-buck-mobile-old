@@ -1,59 +1,59 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
 import { Label, LabelKinds } from '../Label';
-import { SymbolButton, SymbolButtonProps } from './SymbolButton';
+import { StockButton, StockButtonProps } from './StockButton';
 import { FlatList } from 'react-native';
 import { Instructions } from '../../models';
 
-const SymbolListContainer = styled.View`
+const StockListContainer = styled.View`
   flex: 1;
 `;
 
-const SymbolListLabelsContainer = styled.View`
+const StockListLabelsContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   margin: 20px 50px 0;
 `;
 
-const SymbolListItemContainer = styled.View`
+const StockListItemContainer = styled.View`
   margin: 20px 20px 0;
 `;
 
-type Symbol = Omit<SymbolButtonProps, 'onPress'>;
-interface SymbolListProps {
-  symbols: Symbol[];
-  handleSymbolPress: (symbol: Symbol) => void;
+type Stock = Omit<StockButtonProps, 'onPress'>;
+interface StockListProps {
+  symbols: Stock[];
+  handleStockPress: (symbol: Stock) => void;
 }
 
-const SymbolListBase = ({ symbols, handleSymbolPress }: SymbolListProps) => {
+const StockListBase = ({ symbols, handleStockPress }: StockListProps) => {
   const renderItem = useCallback(
     ({ item }) => (
-      <SymbolListItemContainer>
-        <SymbolButton {...item} onPress={() => handleSymbolPress(item)} />
-      </SymbolListItemContainer>
+      <StockListItemContainer>
+        <StockButton {...item} onPress={() => handleStockPress(item)} />
+      </StockListItemContainer>
     ),
-    [handleSymbolPress],
+    [handleStockPress],
   );
 
   return (
-    <SymbolListContainer>
-      <SymbolListLabelsContainer>
+    <StockListContainer>
+      <StockListLabelsContainer>
         <Label kind={LabelKinds.secondary}>Name</Label>
 
         <Label kind={LabelKinds.secondary}>Expected Return %</Label>
-      </SymbolListLabelsContainer>
+      </StockListLabelsContainer>
 
       <FlatList
         data={symbols}
         keyExtractor={(item) => item.name}
         renderItem={renderItem}
       />
-    </SymbolListContainer>
+    </StockListContainer>
   );
 };
 
-export const SymbolList = () => {
-  const symbols: Symbol[] = [
+export const StockList = () => {
+  const symbols: Stock[] = [
     {
       name: 'AAPL',
       instruction: Instructions.buy,
@@ -71,7 +71,7 @@ export const SymbolList = () => {
     },
   ];
 
-  const onSymbolPress = useCallback(() => {}, []);
+  const onStockPress = useCallback(() => {}, []);
 
-  return <SymbolListBase symbols={symbols} handleSymbolPress={onSymbolPress} />;
+  return <StockListBase symbols={symbols} handleStockPress={onStockPress} />;
 };
