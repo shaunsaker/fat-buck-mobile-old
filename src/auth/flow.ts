@@ -33,7 +33,8 @@ export function* authRehydrateFlow(): SagaIterator {
 }
 
 export const SIGN_IN_SUCCESS_MESSAGE = 'Sign in success.';
-export const USER_NOT_FOUND_ERROR_MESSAGE = 'User not found.'; // TODO: test this;
+export const USER_NOT_FOUND_ERROR_MESSAGE =
+  '[auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.';
 
 export function* signInFlow(): SagaIterator {
   yield takeLatest(AuthActionTypes.SIGN_IN, function* (
