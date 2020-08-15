@@ -10,6 +10,8 @@ import {
 } from '../store/actions';
 import { SagaIterator } from 'redux-saga';
 import { Exchanges } from './models';
+import { select } from '../utils/typedSelect';
+import { selectSelectedExchange } from './selectors';
 
 export const DEFAULT_EXCHANGE = 'US';
 
@@ -18,7 +20,11 @@ export function* fetchExchangesFlow(): SagaIterator {
   try {
     const exchanges: Exchanges = yield call(getExchanges);
     yield put(fetchExchangesSuccess(exchanges));
-    yield put(setSelectedExchange(DEFAULT_EXCHANGE));
+
+    const selectedExchange = yield* select(selectSelectedExchange);
+    if (!selectedExchange) {
+      yield put(setSelectedExchange(DEFAULT_EXCHANGE));
+    }
   } catch (error) {
     yield put(fetchExchangesError());
     yield put(showSnackbar(error.message));
