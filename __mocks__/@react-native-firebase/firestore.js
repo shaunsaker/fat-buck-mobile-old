@@ -1,8 +1,12 @@
+import { getMockStocks } from '../../src/testUtils/getMockStocks';
+
 export const TEST_EXCHANGES = [
   { name: 'AU', symbols: [] },
   { name: 'JSE', symbols: [] },
   { name: 'US', symbols: [] },
 ];
+
+export const TEST_STOCKS = getMockStocks();
 
 export default () => ({
   collection: jest.fn(() => ({
@@ -13,5 +17,22 @@ export default () => ({
         };
       }),
     }),
+    doc: jest.fn(() => ({
+      collection: () => ({
+        orderBy: () => ({
+          startAfter: () => ({
+            limit: () => ({
+              get: () => ({
+                docs: TEST_STOCKS.map((item) => {
+                  return {
+                    data: () => item,
+                  };
+                }),
+              }),
+            }),
+          }),
+        }),
+      }),
+    })),
   })),
 });

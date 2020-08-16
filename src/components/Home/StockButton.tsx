@@ -3,11 +3,11 @@ import styled from 'styled-components/native';
 import Chip, { ChipKinds } from '../Chip';
 import { colors } from '../../colors';
 import { Touchable } from '../Touchable';
-import { Instructions } from '../../models';
 import {
   ButtonContainer,
   BUTTON_CONTAINER_BORDER_RADIUS,
 } from '../ButtonContainer';
+import { Instructions } from '../../stocks/models';
 
 const StockButtonContainer = styled(Touchable)`
   flex-direction: row;
@@ -20,10 +20,14 @@ const StockButtonNameContainer = styled.View`
   width: 72px;
 `;
 
-const StockButtonText = styled.Text`
+interface StockButtonTextProps {
+  secondary?: boolean;
+}
+
+const StockButtonText = styled.Text<StockButtonTextProps>`
   font-family: 'Recursive-Bold';
   font-size: 18px;
-  color: ${colors.white};
+  color: ${({ secondary }) => (secondary ? colors.grey : colors.white)};
 `;
 
 const StockButtonChipContainer = styled.View``;
@@ -68,7 +72,10 @@ export const StockButton = ({
         </StockButtonChipContainer>
 
         <StockButtonReturnContainer>
-          <StockButtonText>{expectedReturn}%</StockButtonText>
+          <StockButtonText>
+            {expectedReturn}
+            <StockButtonText secondary> %</StockButtonText>
+          </StockButtonText>
         </StockButtonReturnContainer>
       </StockButtonContainer>
     </ButtonContainer>

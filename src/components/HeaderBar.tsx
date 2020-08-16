@@ -6,7 +6,6 @@ import { colors } from '../colors';
 import { TouchableIcon } from './TouchableIcon';
 import { useDispatch } from 'react-redux';
 import { setSideMenuIsOpen } from '../store/actions';
-import { View } from 'react-native';
 
 const HeaderBarContainer = styled.View`
   flex-direction: row;

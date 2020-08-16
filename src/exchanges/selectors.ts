@@ -8,3 +8,6 @@ export const selectSelectedExchange = (state: ApplicationState) =>
 
 export const selectExchanges = (state: ApplicationState) =>
   Object.keys(state.exchanges.exchanges).map((key) => key);
+
+export const selectExchangesLoading = (state: ApplicationState) =>
+  state.exchanges.loading;

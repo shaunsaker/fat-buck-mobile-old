@@ -25,7 +25,7 @@ const ButtonContainerInnerContainer = styled.View<
 
 interface ButtonContainerProps {
   active?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const ButtonContainer = ({ active, children }: ButtonContainerProps) => {
