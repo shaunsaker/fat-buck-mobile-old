@@ -24,10 +24,21 @@ const HeaderBarMenuIconContainer = styled(TouchableIcon)`
   margin-right: 20px;
 `;
 
+const HeaderBarTextContainer = styled.View``;
+
 const HeaderBarText = styled.Text`
   font-family: 'Recursive-Bold';
   font-size: 24px;
   color: ${colors.white};
+`;
+
+const HeaderBarBetaText = styled.Text`
+  font-family: 'Recursive-BOLD';
+  font-size: 12px;
+  color: ${colors.grey};
+  position: absolute;
+  top: 0;
+  right: -30px;
 `;
 
 interface HeaderBarBaseProps extends HeaderBarProps {
@@ -45,7 +56,11 @@ const HeaderBarBase = ({ text, handleMenuPress }: HeaderBarBaseProps) => {
         <Logo />
       </HeaderBarAlignmentContainer>
 
-      <HeaderBarText>{text}</HeaderBarText>
+      <HeaderBarTextContainer>
+        <HeaderBarText>{text}</HeaderBarText>
+
+        <HeaderBarBetaText>BETA</HeaderBarBetaText>
+      </HeaderBarTextContainer>
 
       <HeaderBarAlignmentContainer />
     </HeaderBarContainer>
