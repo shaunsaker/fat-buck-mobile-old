@@ -6,6 +6,7 @@ import { SignIn } from './components/SignIn';
 import { useSelector } from 'react-redux';
 import { selectIsAuthenticated } from './auth/selectors';
 import { Home } from './components/Home';
+import { Background } from './components/Background';
 
 const Stack = createStackNavigator();
 
@@ -17,14 +18,20 @@ export const Router = () => {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        {isAuthenticated ? (
-          <Stack.Screen name="home" component={Home} />
-        ) : (
-          <Stack.Screen name="signIn" component={SignIn} />
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Background>
+      <NavigationContainer>
+        <Stack.Navigator headerMode="none" mode="modal">
+          {isAuthenticated ? (
+            <Stack.Screen name="home" component={Home} />
+          ) : (
+            <Stack.Screen
+              name="signIn"
+              component={SignIn}
+              options={{ animationEnabled: false }}
+            />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Background>
   );
 };
