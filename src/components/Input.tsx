@@ -5,12 +5,15 @@ import {
   BUTTON_CONTAINER_BORDER_RADIUS,
 } from './ButtonContainer';
 import { colors } from '../colors';
-import { TextInputProperties, TextInput } from 'react-native';
+import { TextInputProperties, TextInput, Platform } from 'react-native';
 
 const InputContainer = styled(TextInput)`
   flex: 1;
   padding: 0 ${BUTTON_CONTAINER_BORDER_RADIUS}px;
   font-family: 'Recursive-Bold';
+  font-weight: ${Platform.OS === 'android'
+    ? 'normal'
+    : 'bold'}; /* fix font-family android */
   font-size: 18px;
   color: ${colors.white};
 `;
