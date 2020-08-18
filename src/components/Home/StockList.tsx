@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
 import { Label, LabelKinds } from '../Label';
 import { StockButton } from './StockButton';
@@ -67,22 +67,6 @@ const StockListBase = ({
   handleStockPress,
   handleEndReached,
 }: StockListBaseProps) => {
-  const [hasMomentum, setHasMomentum] = useState(false);
-
-  const onMomentumScrollBegin = useCallback(() => {
-    setHasMomentum(true);
-  }, []);
-
-  const onMomentumScrollEnd = useCallback(() => {
-    setHasMomentum(false);
-  }, []);
-
-  const onEndReached = useCallback(() => {
-    if (!hasMomentum) {
-      handleEndReached();
-    }
-  }, [handleEndReached, hasMomentum]);
-
   const renderItem = useCallback(
     ({ item }: { item: Stock }) => (
       <StockListItemContainer>
@@ -110,12 +94,10 @@ const StockListBase = ({
           data={stocks}
           keyExtractor={(item) => item.symbol}
           renderItem={renderItem}
-          onMomentumScrollBegin={onMomentumScrollBegin}
-          onMomentumScrollEnd={onMomentumScrollEnd}
-          onEndReached={onEndReached}
-          onEndReachedThreshold={0.1}
+          onEndReached={handleEndReached}
+          onEndReachedThreshold={0.2}
           ListFooterComponent={
-            isLoading ? <StockListLoader itemsToRender={1} /> : null
+            isLoading ? <StockListLoader itemsToRender={3} /> : null
           }
         />
       ) : (
