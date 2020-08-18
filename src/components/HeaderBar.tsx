@@ -21,7 +21,7 @@ const HeaderBarAlignmentContainer = styled.View`
 `;
 
 const HeaderBarMenuIconContainer = styled(TouchableIcon)`
-  margin-right: 20px;
+  margin-right: 10px;
 `;
 
 const HeaderBarTextContainer = styled.View``;
@@ -45,7 +45,11 @@ interface HeaderBarBaseProps extends HeaderBarProps {
   handleMenuPress: () => void;
 }
 
-const HeaderBarBase = ({ text, handleMenuPress }: HeaderBarBaseProps) => {
+const HeaderBarBase = ({
+  text,
+  showBeta,
+  handleMenuPress,
+}: HeaderBarBaseProps) => {
   return (
     <HeaderBarContainer>
       <HeaderBarAlignmentContainer>
@@ -59,7 +63,7 @@ const HeaderBarBase = ({ text, handleMenuPress }: HeaderBarBaseProps) => {
       <HeaderBarTextContainer>
         <HeaderBarText>{text}</HeaderBarText>
 
-        <HeaderBarBetaText>BETA</HeaderBarBetaText>
+        {showBeta ? <HeaderBarBetaText>BETA</HeaderBarBetaText> : null}
       </HeaderBarTextContainer>
 
       <HeaderBarAlignmentContainer />
@@ -69,6 +73,7 @@ const HeaderBarBase = ({ text, handleMenuPress }: HeaderBarBaseProps) => {
 
 interface HeaderBarProps {
   text?: string;
+  showBeta?: boolean;
 }
 
 export const HeaderBar = (props: HeaderBarProps) => {

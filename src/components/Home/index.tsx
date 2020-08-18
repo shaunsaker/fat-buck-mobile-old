@@ -13,7 +13,7 @@ const HomeSelectExchangeButtonContainer = styled.View`
 export const Home = () => {
   return (
     <Background>
-      <HeaderBar text="Fat Buck" />
+      <HeaderBar text="Fat Buck" showBeta />
 
       <HomeSelectExchangeButtonContainer>
         <SelectExchangeButton />
