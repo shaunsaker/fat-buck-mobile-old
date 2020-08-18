@@ -16,3 +16,5 @@ export const fetchStocksSuccess = (exchange: string, stocks: Stock[]) =>
 
 export const fetchStocksError = (exchange: string) =>
   action(StocksActionTypes.FETCH_STOCKS_ERROR, { exchange });
+
+export const resetStocks = () => action(StocksActionTypes.RESET_STOCKS);

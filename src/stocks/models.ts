@@ -3,12 +3,7 @@ export enum StocksActionTypes {
   FETCH_MORE_STOCKS = '@@stocks/FETCH_MORE_STOCKS',
   FETCH_STOCKS_SUCCESS = '@@stocks/FETCH_STOCKS_SUCCESS',
   FETCH_STOCKS_ERROR = '@@stocks/FETCH_STOCKS_ERROR',
-}
-
-export enum Instructions {
-  buy = 'BUY',
-  hold = 'HOLD',
-  sell = 'SELL',
+  RESET_STOCKS = '@@stocks/RESET_STOCKS',
 }
 
 export interface Stock {

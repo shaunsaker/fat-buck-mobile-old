@@ -5,7 +5,6 @@ import { colors } from '../colors';
 export enum ChipKinds {
   primary,
   secondary,
-  tertiary,
 }
 
 interface ChipContainerProps {
@@ -22,11 +21,7 @@ const ChipContainer = styled.View<ChipContainerProps>`
   border-style: solid;
   border-radius: 20px;
   border-color: ${({ kind }) =>
-    kind === ChipKinds.primary
-      ? colors.green
-      : kind === ChipKinds.secondary
-      ? colors.yellow
-      : colors.red};
+    kind === ChipKinds.primary ? colors.green : colors.red};
 `;
 
 const ChipText = styled.Text`

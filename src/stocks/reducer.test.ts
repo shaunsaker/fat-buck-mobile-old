@@ -1,5 +1,10 @@
 import { stocksReducer, initialState } from './reducer';
-import { fetchStocks, fetchStocksError, fetchStocksSuccess } from './actions';
+import {
+  fetchStocks,
+  fetchStocksError,
+  fetchStocksSuccess,
+  resetStocks,
+} from './actions';
 import { getMockStocks } from '../testUtils/getMockStocks';
 import { Stock } from './models';
 
@@ -51,5 +56,14 @@ describe('stocks reducer', () => {
     nextState = stocksReducer(nextState, fetchStocksError(exchange));
 
     expect(nextState[exchange].loading).toEqual(false);
+  });
+
+  it('resets stocks correctly', () => {
+    const stocks: Stock[] = [];
+    let nextState = stocksReducer(initialState, fetchStocks(exchange));
+    nextState = stocksReducer(nextState, fetchStocksSuccess(exchange, stocks));
+    nextState = stocksReducer(nextState, resetStocks());
+
+    expect(nextState).toEqual(initialState);
   });
 });

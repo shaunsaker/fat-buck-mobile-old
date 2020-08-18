@@ -19,14 +19,16 @@ export default () => ({
     }),
     doc: jest.fn(() => ({
       collection: () => ({
-        orderBy: () => ({
-          startAfter: () => ({
-            limit: () => ({
-              get: () => ({
-                docs: TEST_STOCKS.map((item) => {
-                  return {
-                    data: () => item,
-                  };
+        where: () => ({
+          orderBy: () => ({
+            startAfter: () => ({
+              limit: () => ({
+                get: () => ({
+                  docs: TEST_STOCKS.map((item) => {
+                    return {
+                      data: () => item,
+                    };
+                  }),
                 }),
               }),
             }),

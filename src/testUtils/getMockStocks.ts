@@ -1,5 +1,6 @@
 import faker from 'faker';
-import { Stock, Instructions } from '../stocks/models';
+import { Stock } from '../stocks/models';
+import { Instructions } from '../instructions/models';
 
 export const getMockStocks = (count: number = 10): Stock[] => {
   const getString = () => faker.random.words(1);

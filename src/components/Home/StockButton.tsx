@@ -7,7 +7,7 @@ import {
   ButtonContainer,
   BUTTON_CONTAINER_BORDER_RADIUS,
 } from '../ButtonContainer';
-import { Instructions } from '../../stocks/models';
+import { Instructions } from '../../instructions/models';
 
 const StockButtonContainer = styled(Touchable)`
   flex-direction: row;
@@ -63,9 +63,7 @@ export const StockButton = ({
             kind={
               instruction === Instructions.buy
                 ? ChipKinds.primary
-                : instruction === Instructions.hold
-                ? ChipKinds.secondary
-                : ChipKinds.tertiary
+                : ChipKinds.secondary
             }>
             {instruction}
           </Chip>

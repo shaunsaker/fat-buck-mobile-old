@@ -45,6 +45,9 @@ export const stocksReducer: Reducer<StocksState> = (
         },
       };
     }
+    case StocksActionTypes.RESET_STOCKS: {
+      return initialState;
+    }
     default: {
       return state;
     }

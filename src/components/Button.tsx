@@ -17,7 +17,7 @@ interface ButtonContainerProps {
 const ButtonContainer = styled(Touchable)<ButtonContainerProps>`
   width: 152px;
   height: 40px;
-  border-width: 3px;
+  border-width: ${({ kind }) => (kind === ButtonKinds.secondary ? 3 : 0)};
   border-style: solid;
   border-color: ${({ kind }) =>
     kind === ButtonKinds.primary ? colors.green : colors.grey};
