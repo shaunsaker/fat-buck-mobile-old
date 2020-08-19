@@ -95,7 +95,7 @@ const StockListBase = ({
           keyExtractor={(item) => item.symbol}
           renderItem={renderItem}
           onEndReached={handleEndReached}
-          onEndReachedThreshold={0.2}
+          onEndReachedThreshold={0.33}
           ListFooterComponent={
             isLoading ? <StockListLoader itemsToRender={3} /> : null
           }
