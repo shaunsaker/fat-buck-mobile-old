@@ -13,7 +13,7 @@ interface LabelTextProps {
 
 const LabelText = styled.Text<LabelTextProps>`
   font-family: 'Recursive-Regular';
-  font-size: 16px;
+  font-size: 14px;
   color: ${({ kind }) =>
     kind === LabelKinds.primary ? colors.white : colors.grey};
 `;
@@ -21,8 +21,13 @@ const LabelText = styled.Text<LabelTextProps>`
 interface LabelProps {
   kind: LabelKinds;
   children: ReactNode;
+  style?: any;
 }
 
-export const Label = ({ kind, children }: LabelProps) => {
-  return <LabelText kind={kind}>{children}</LabelText>;
+export const Label = ({ kind, children, style }: LabelProps) => {
+  return (
+    <LabelText kind={kind} style={style}>
+      {children}
+    </LabelText>
+  );
 };

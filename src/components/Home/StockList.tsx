@@ -11,8 +11,8 @@ import {
   selectStocksHasMoreData,
 } from '../../stocks/selectors';
 import { Stock } from '../../stocks/models';
-import { ButtonContainer } from '../ButtonContainer';
 import Animator from 'react-native-simple-animators';
+import { colors } from '../../colors';
 
 const StockListContainer = styled.View`
   flex: 1;
@@ -20,15 +20,50 @@ const StockListContainer = styled.View`
 
 const StockListLabelsContainer = styled.View`
   flex-direction: row;
-  justify-content: space-between;
-  margin: 20px 50px;
+  padding: 20px;
+  border-bottom-width: 3px;
+  border-color: ${colors.transWhite};
+  border-style: solid;
 `;
 
 const StockListItemContainer = styled.View`
-  margin: 0 20px 20px;
+  height: 73px;
+  border-bottom-width: 3px;
+  border-color: ${colors.transWhite};
+  border-style: solid;
 `;
 
 const StockListLoaderContainer = styled.View``;
+
+const StockListItemLoader = styled.View`
+  height: 30px;
+  background-color: ${colors.transWhite};
+  border-radius: 20px;
+`;
+
+interface StockListLabels {
+  [key: string]: { label: string; style: any }; // FIXME: any
+}
+
+export const STOCK_LIST_COLUMNS: StockListLabels = {
+  name: {
+    label: 'Name',
+    style: { flex: 1, marginRight: 10 },
+  },
+  instruction: {
+    label: 'Instruction',
+    style: { flex: 3, marginRight: 10 },
+  },
+  // TODO: add health label when backend is ready
+  return: {
+    label: 'Return %',
+    style: {
+      flex: 1,
+      alignItems: 'flex-end', // value
+      textAlign: 'right', // label
+    },
+  },
+};
 
 interface StockListLoaderProps {
   itemsToRender?: number;
@@ -38,17 +73,23 @@ const StockListLoader = ({ itemsToRender = 3 }: StockListLoaderProps) => {
   return (
     <StockListLoaderContainer>
       {[...Array(itemsToRender).keys()].map((key) => (
-        <StockListItemContainer key={key}>
-          <Animator
-            type="opacity"
-            initialValue={0.25}
-            finalValue={0.75}
-            duration={600}
-            shouldAnimateIn
-            shouldRepeat>
-            <ButtonContainer />
-          </Animator>
-        </StockListItemContainer>
+        <Animator
+          key={key}
+          type="opacity"
+          initialValue={0.25}
+          finalValue={0.75}
+          duration={600}
+          shouldAnimateIn
+          shouldRepeat>
+          <StockListLabelsContainer>
+            {Object.keys(STOCK_LIST_COLUMNS).map((itemKey) => (
+              <StockListItemLoader
+                key={itemKey}
+                style={STOCK_LIST_COLUMNS[itemKey].style}
+              />
+            ))}
+          </StockListLabelsContainer>
+        </Animator>
       ))}
     </StockListLoaderContainer>
   );
@@ -84,9 +125,14 @@ const StockListBase = ({
   return (
     <StockListContainer>
       <StockListLabelsContainer>
-        <Label kind={LabelKinds.secondary}>Name</Label>
-
-        <Label kind={LabelKinds.secondary}>Expected Return %</Label>
+        {Object.keys(STOCK_LIST_COLUMNS).map((key) => (
+          <Label
+            key={key}
+            kind={LabelKinds.secondary}
+            style={STOCK_LIST_COLUMNS[key].style}>
+            {STOCK_LIST_COLUMNS[key].label}
+          </Label>
+        ))}
       </StockListLabelsContainer>
 
       {stocks ? (
