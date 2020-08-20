@@ -52,15 +52,15 @@ export const STOCK_LIST_COLUMNS: StockListLabels = {
   },
   instruction: {
     label: 'Instruction',
-    style: { flex: 3, marginRight: 10 },
+    style: { flex: 2.5, marginRight: 10 },
   },
   // TODO: add health label when backend is ready
   return: {
     label: 'Return %',
     style: {
-      flex: 1,
       alignItems: 'flex-end', // value
       textAlign: 'right', // label
+      width: 70,
     },
   },
 };

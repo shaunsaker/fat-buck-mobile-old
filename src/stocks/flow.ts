@@ -13,9 +13,9 @@ import { ExchangesActionTypes } from '../exchanges/models';
 import { StocksActionTypes, Stock } from './models';
 import { selectStocksPreviousStartAtValue } from '../stocks/selectors';
 import { selectSelectedInstruction } from '../instructions/selectors';
-import { InstructionsActionTypes, Instructions } from '../instructions/models';
+import { InstructionsActionTypes } from '../instructions/models';
 
-export const DEFAULT_START_AT = 100000; // an arb high value
+export const DEFAULT_START_AT = 1000000; // an arb high value
 
 export function* fetchStocksSaga(): SagaIterator {
   const exchange = yield* select(selectSelectedExchange);
@@ -24,10 +24,8 @@ export function* fetchStocksSaga(): SagaIterator {
   try {
     const instruction = yield* select(selectSelectedInstruction);
 
-    // if instruction is SELL, start at a very low negative number
     const previousStartAtValue =
-      (yield* select(selectStocksPreviousStartAtValue)) ||
-      DEFAULT_START_AT * (instruction === Instructions.sell ? -1 : 1);
+      (yield* select(selectStocksPreviousStartAtValue)) || DEFAULT_START_AT;
 
     const stocks = (yield call(
       getStocks,
