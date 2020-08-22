@@ -7,8 +7,6 @@ import { store, persistor } from './store';
 import { Router } from './Router';
 import { colors } from './colors';
 
-declare const global: { HermesInternal: null | {} };
-
 const App = () => {
   // useEffect(() => {
   //   persistor.purge();
