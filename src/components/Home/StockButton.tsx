@@ -5,12 +5,13 @@ import { colors } from '../../colors';
 import { Touchable } from '../Touchable';
 import { Instructions } from '../../instructions/models';
 import { STOCK_LIST_COLUMNS } from './StockList';
+import { Health } from '../../stocks/models';
 
 const StockButtonContainer = styled(Touchable)`
   flex-direction: row;
   align-items: center;
   flex: 1;
-  padding: 20px;
+  padding: 10px 20px;
 `;
 
 const StockButtonItemContainer = styled.View``;
@@ -21,13 +22,14 @@ interface StockButtonTextProps {
 
 const StockButtonText = styled.Text<StockButtonTextProps>`
   font-family: 'Recursive-Bold';
-  font-size: 18px;
+  font-size: 16px;
   color: ${({ secondary }) => (secondary ? colors.grey : colors.white)};
 `;
 
 export interface StockButtonProps {
   name: string;
   instruction: Instructions;
+  health: Health;
   expectedReturn: number;
   onPress: () => void;
 }
@@ -35,6 +37,7 @@ export interface StockButtonProps {
 export const StockButton = ({
   name,
   instruction,
+  health,
   expectedReturn,
   onPress,
 }: StockButtonProps) => {
@@ -50,10 +53,25 @@ export const StockButton = ({
           kind={
             instruction === Instructions.buy
               ? ChipKinds.primary
-              : ChipKinds.secondary
+              : ChipKinds.tertiary
           }>
           {instruction}
         </Chip>
+      </StockButtonItemContainer>
+
+      <StockButtonItemContainer style={STOCK_LIST_COLUMNS.health.style}>
+        {health ? (
+          <Chip
+            kind={
+              health === Health.healthy
+                ? ChipKinds.primary
+                : health === Health.average
+                ? ChipKinds.secondary
+                : ChipKinds.tertiary
+            }>
+            {health}
+          </Chip>
+        ) : null}
       </StockButtonItemContainer>
 
       <StockButtonItemContainer style={STOCK_LIST_COLUMNS.return.style}>

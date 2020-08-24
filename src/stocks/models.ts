@@ -1,9 +1,17 @@
+import { Instructions } from '../instructions/models';
+
 export enum StocksActionTypes {
   FETCH_STOCKS = '@@stocks/FETCH_STOCKS',
   FETCH_MORE_STOCKS = '@@stocks/FETCH_MORE_STOCKS',
   FETCH_STOCKS_SUCCESS = '@@stocks/FETCH_STOCKS_SUCCESS',
   FETCH_STOCKS_ERROR = '@@stocks/FETCH_STOCKS_ERROR',
   RESET_STOCKS = '@@stocks/RESET_STOCKS',
+}
+
+export enum Health {
+  healthy = 'HEALTHY',
+  average = 'AVERAGE',
+  dying = 'DYING',
 }
 
 export interface Stock {
@@ -70,6 +78,7 @@ export interface Stock {
     fcf: number;
     grahamIv: number;
     growthRate: number;
+    health: Health;
     instruction: Instructions;
     liquidationIv: number;
     marketCap: number;

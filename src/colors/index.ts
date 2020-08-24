@@ -7,5 +7,5 @@ export const colors = {
   lightGreen: 'rgba(2,159,143,0.1)',
   blue: '#028796',
   yellow: '#9C9F02',
-  red: '#D1282B',
+  red: '#DC3C3E',
 };

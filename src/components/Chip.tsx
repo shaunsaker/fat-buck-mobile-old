@@ -2,32 +2,33 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { colors } from '../colors';
 
+const ChipContainer = styled.View`
+  background-color: ${colors.lightGreen};
+  padding: 5px 10px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
 export enum ChipKinds {
   primary,
   secondary,
+  tertiary,
 }
 
-interface ChipContainerProps {
+interface ChipTextProps {
   kind: ChipKinds;
 }
 
-const ChipContainer = styled.View<ChipContainerProps>`
-  width: 86px;
-  height: 33px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${colors.lightGreen};
-  border-width: 3px;
-  border-style: solid;
-  border-radius: 20px;
-  border-color: ${({ kind }) =>
-    kind === ChipKinds.primary ? colors.green : colors.red};
-`;
-
-const ChipText = styled.Text`
+const ChipText = styled.Text<ChipTextProps>`
   font-family: 'Recursive-Bold';
-  font-size: 14px;
-  color: ${colors.white};
+  font-size: 16px;
+  color: ${({ kind }) =>
+    kind === ChipKinds.primary
+      ? colors.green
+      : kind === ChipKinds.secondary
+      ? colors.yellow
+      : colors.red};
 `;
 
 export interface ChipProps {
@@ -37,8 +38,8 @@ export interface ChipProps {
 
 export const Chip = ({ kind, children }: ChipProps) => {
   return (
-    <ChipContainer kind={kind}>
-      <ChipText>{children}</ChipText>
+    <ChipContainer>
+      <ChipText kind={kind}>{children}</ChipText>
     </ChipContainer>
   );
 };

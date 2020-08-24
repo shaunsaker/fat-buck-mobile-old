@@ -27,7 +27,8 @@ const StockListLabelsContainer = styled.View`
 `;
 
 const StockListItemContainer = styled.View`
-  height: 73px;
+  height: 50px;
+  justify-content: center;
   border-bottom-width: 3px;
   border-color: ${colors.transWhite};
   border-style: solid;
@@ -35,8 +36,18 @@ const StockListItemContainer = styled.View`
 
 const StockListLoaderContainer = styled.View``;
 
+const StockListLoaderRowContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
+  border-bottom-width: 3px;
+  border-color: ${colors.transWhite};
+  border-style: solid;
+`;
+
 const StockListItemLoader = styled.View`
-  height: 30px;
+  height: 25px;
   background-color: ${colors.transWhite};
   border-radius: 20px;
 `;
@@ -48,18 +59,31 @@ interface StockListLabels {
 export const STOCK_LIST_COLUMNS: StockListLabels = {
   name: {
     label: 'Name',
-    style: { flex: 1, marginRight: 10 },
+    style: { flex: 0.67, marginRight: 10 },
   },
   instruction: {
     label: 'Instruction',
-    style: { flex: 2.5, marginRight: 10 },
+    style: {
+      flex: 1,
+      marginRight: 10,
+      alignItems: 'center',
+      textAlign: 'center',
+    },
   },
-  // TODO: add health label when backend is ready
+  health: {
+    label: 'Health',
+    style: {
+      flex: 1,
+      marginRight: 10,
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+  },
   return: {
     label: 'Return %',
     style: {
-      alignItems: 'flex-end', // value
-      textAlign: 'right', // label
+      alignItems: 'flex-end',
+      textAlign: 'right',
       width: 70,
     },
   },
@@ -81,14 +105,14 @@ const StockListLoader = ({ itemsToRender = 3 }: StockListLoaderProps) => {
           duration={600}
           shouldAnimateIn
           shouldRepeat>
-          <StockListLabelsContainer>
+          <StockListLoaderRowContainer>
             {Object.keys(STOCK_LIST_COLUMNS).map((itemKey) => (
               <StockListItemLoader
                 key={itemKey}
                 style={STOCK_LIST_COLUMNS[itemKey].style}
               />
             ))}
-          </StockListLabelsContainer>
+          </StockListLoaderRowContainer>
         </Animator>
       ))}
     </StockListLoaderContainer>
@@ -114,6 +138,7 @@ const StockListBase = ({
         <StockButton
           name={item.symbol}
           instruction={item.valuation.instruction}
+          health={item.valuation.health}
           expectedReturn={Math.round(item.valuation.expectedReturn)}
           onPress={() => handleStockPress(item)}
         />
